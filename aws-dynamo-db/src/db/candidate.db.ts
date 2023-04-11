@@ -3,7 +3,7 @@ import { ICandidate } from '../schemas/candidate.schema.js'
 
 const CandidateTable = Table.Candidate
 
-// Create or Update users
+// Create or Update candidates
 const createOrUpdate = async (data: ICandidate = {} as ICandidate) => {
   const params = {
     TableName: CandidateTable,
@@ -18,8 +18,8 @@ const createOrUpdate = async (data: ICandidate = {} as ICandidate) => {
   }
 }
 
-// Read all users
-const readAllUsers = async () => {
+// Read all candidates
+const readAllCandidates = async () => {
   const params = {
     TableName: CandidateTable,
   }
@@ -32,8 +32,8 @@ const readAllUsers = async () => {
   }
 }
 
-// Read Users by ID
-const getUserById = async (value: string, key: string = 'id') => {
+// Read Candidate by ID
+const getCandidateById = async (value: string, key: string = 'id') => {
   const params = {
     TableName: CandidateTable,
     Key: {
@@ -48,8 +48,8 @@ const getUserById = async (value: string, key: string = 'id') => {
   }
 }
 
-// Delete User by ID
-const deleteUserById = async (value: string, key: string = 'id') => {
+// Delete Candidate by ID
+const deleteCandidateById = async (value: string, key: string = 'id') => {
   const params = {
     TableName: CandidateTable,
     Key: {
@@ -65,4 +65,9 @@ const deleteUserById = async (value: string, key: string = 'id') => {
   }
 }
 
-export { createOrUpdate, readAllUsers, getUserById, deleteUserById }
+export {
+  createOrUpdate,
+  readAllCandidates,
+  getCandidateById,
+  deleteCandidateById,
+}
