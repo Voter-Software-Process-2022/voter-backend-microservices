@@ -10,6 +10,9 @@ const db = new AWS.DynamoDB.DocumentClient()
 
 const Table = {
   Candidate: 'Candidate',
+  User: 'User',
+  Vote: 'Vote',
+  Ballot: 'Ballot',
 }
 
 export { db, Table }
