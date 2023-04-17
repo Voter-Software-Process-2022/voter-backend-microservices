@@ -33,6 +33,8 @@ async function register(userInfo) {
         })
     }
 
+    // add validate citizenID & laserID
+
     // const encrytedPW = bcrypt.hashSync(laserID.trim(), 10);
     const user = {
         citizenID: citizenID,
@@ -42,7 +44,8 @@ async function register(userInfo) {
         dateOfBirth: dateOfBirth,
         religion: religion,
         location: location,
-        nationality: nationality
+        nationality: nationality,
+        hasRight: true
     }
 
     // save data to database
