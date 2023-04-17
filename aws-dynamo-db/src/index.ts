@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express'
 import bodyParser from 'body-parser'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 import ballot from './routes/ballot.route'
 import candidate from './routes/candidate.route'
@@ -8,7 +8,7 @@ import user from './routes/user.route'
 import vote from './routes/vote.route'
 
 const PORT: number = 8000
-dotenv.config()
+// dotenv.config()
 
 const app: Application = express()
 

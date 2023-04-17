@@ -1,19 +1,35 @@
 version: '3'
 services:
-  attachment-storage:
-    image: attachment
+  aws-storage:
+    image: aws-bucket
     build:
-      context: ./attachment
-      dockerfile: Dockerfile-prod
-    container_name: attachment-storage
+      context: ./aws-bucket
+      dockerfile: Dockerfile
+    container_name: aws-storage
     volumes:
-      - /tmp/attachment/npm-cache:/root/.npm:z
-      - ./attachment/src:/usr/src/app/src:z
+      - /tmp/aws-bucket/npm-cache:/root/.npm:z
+      - ./aws-bucket/src:/usr/src/app/src:z
     ports:
-      - '4005:80'
+      - '4000:80'
     environment:
       - AWS_BUCKET_NAME=voter-attachements
       - AWS_BUCKET_REGION=ap-southeast-1
       - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
       - AWS_SECRET_KEY=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
+    restart: 'no'
+
+  db:
+    image: aws-dynamo-db
+    build:
+      context: ./aws-dynamo-db
+      dockerfile: Dockerfile
+    container_name: db
+    volumes:
+      - /tmp/aws-dynamo-db/npm-cache:/root/.npm:z
+      - ./aws-dynamo-db/src:/usr/src/app/src:z
+    ports:
+      - '4001:80'
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQKUISJDSZ
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
