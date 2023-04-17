@@ -36,7 +36,7 @@ async function register(userInfo) {
     // const encrytedPW = bcrypt.hashSync(laserID.trim(), 10);
     const user = {
         citizenID: citizenID,
-        laserID: laserID,
+        laserID: laserID,  // or encrytedPW
         name: name,
         lastname: lastname,
         dateOfBirth: dateOfBirth,
