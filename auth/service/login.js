@@ -26,13 +26,7 @@ async function login(user) {
         })
     }
 
-    // if (!bcrypt.compareSync(laserID, dynamoUser.laserID)) {
-    //     return util.buildResponse(403, {
-    //         message: 'laserID is incorrect'
-    //     })
-    // }
-
-    if (laserID !== dynamoUser.laserID) {
+    if (!bcrypt.compareSync(laserID, dynamoUser.laserID)) {
         return util.buildResponse(403, {
             message: 'laserID is incorrect'
         })
