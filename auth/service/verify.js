@@ -1,4 +1,4 @@
-const util = requrie('../utils/util')
+const util = require('../utils/util')
 const auth = require('../utils/auth')
 
 function verify(requestBody) {
