@@ -1,10 +1,8 @@
-FROM node:16-alpine AS builder
+FROM node:18-buster-slim
 
-WORKDIR /usr
+WORKDIR /usr/src/app
+COPY package.json ./
+RUN npm install
+COPY . .
 
-COPY package*.json ./
-
-RUN npm install --only=production
-COPY ./src ./src
-
-CMD [ "npm", "run", "start" ]
+CMD ["npm", "start"]
