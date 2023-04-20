@@ -8,6 +8,6 @@ AWS.config.update({
 
 const db = new AWS.DynamoDB.DocumentClient()
 
-const tableName = 'Vote'
+const tableName = 'Ballot2'
 
 export { db, tableName }

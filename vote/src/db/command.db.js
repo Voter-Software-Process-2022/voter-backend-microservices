@@ -45,11 +45,11 @@ const findAll = async () => {
 }
 
 // Read data by ID
-const findById = async (value, key = 'id') => {
+const findById = async (value, key = 'ballotID') => {
   const params = {
     TableName: tableName,
     Key: {
-      [key]: parseInt(value),
+      [key]: value,
     },
   }
   try {
