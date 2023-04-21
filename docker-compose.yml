@@ -1,5 +1,15 @@
 version: '3'
 services:
+  frontend:
+    image: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - 3000:3000
+    restart: 'no'
+
   candidate:
     image: candidate
     build:
@@ -7,10 +17,23 @@ services:
       dockerfile: Dockerfile
     container_name: candidate
     ports:
-      - 4001:80
+      - 4000:4000
     environment:
       - AWS_BUCKET_NAME=voter-attachements
       - AWS_BUCKET_REGION=ap-southeast-1
       - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
-      - AWS_SECRET_KEY=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
+      - AWS_SECRET_ACCESS_KEY=avq96bFmN8pOw6W7zddXJCQMkvJ1v/xH9J8nwfn/
+    restart: 'no'
+
+  vote:
+    image: vote
+    build:
+      context: ./vote
+      dockerfile: Dockerfile
+    container_name: vote
+    ports:
+      - 5000:5000
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'

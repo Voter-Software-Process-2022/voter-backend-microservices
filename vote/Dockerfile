@@ -1,19 +1,11 @@
-FROM node:16-alpine AS builder
-
-WORKDIR /usr
-
-COPY . .
-
-RUN npm install
-
-FROM node:16-alpine AS final
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
 COPY package.json .
-COPY package-lock.json .
-RUN npm install --only=production
+RUN npm install
+COPY . .
 
-EXPOSE 80
+EXPOSE 5000
 
-CMD [ "npm", "run", "start" ]
+CMD ["npm", "start"]
