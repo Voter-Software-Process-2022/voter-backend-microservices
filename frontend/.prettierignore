@@ -1,0 +1,9 @@
+.git
+node_modules
+.eslintignore
+.gitignore
+LICENSE
+dist
+dist-ssr
+coverage
+src/config/*.ts
