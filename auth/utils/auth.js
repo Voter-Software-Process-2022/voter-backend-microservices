@@ -35,3 +35,4 @@ function verifyToken(citizenID, token) {
 
 module.exports.generateToken = generateToken;
 module.exports.verifyToken = verifyToken;
+
