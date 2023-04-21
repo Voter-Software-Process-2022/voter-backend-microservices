@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 const auth = require('../utils/auth')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'User';
+const userTable = 'User2';
 
 async function login(user) {
     const citizenID = user.citizenID;
@@ -26,13 +26,7 @@ async function login(user) {
         })
     }
 
-    // if (!bcrypt.compareSync(laserID, dynamoUser.laserID)) {
-    //     return util.buildResponse(403, {
-    //         message: 'laserID is incorrect'
-    //     })
-    // }
-
-    if (laserID !== dynamoUser.laserID) {
+    if (!bcrypt.compareSync(laserID, dynamoUser.laserID)) {
         return util.buildResponse(403, {
             message: 'laserID is incorrect'
         })

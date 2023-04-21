@@ -6,7 +6,7 @@ const util = require('../utils/util')
 const bcrypt = require('bcryptjs')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'User';
+const userTable = 'User2';
 
 async function register(userInfo) {
     const citizenID = userInfo.citizenID;
@@ -34,11 +34,34 @@ async function register(userInfo) {
     }
 
     // add validate citizenID & laserID
+    if (citizenID instanceof String) {
+        return util.buildResponse(400, {
+            message: 'citizenID must be string'
+        })
+    }
 
-    // const encrytedPW = bcrypt.hashSync(laserID.trim(), 10);
+    if (laserID instanceof String) {
+        return util.buildResponse(400, {
+            message: 'laserID must be string'
+        })
+    }
+
+    if (citizenID.length != 13) {
+        return util.buildResponse(400, {
+            message: 'citizenID\'s length must be 13'
+        })
+    }
+
+    if (laserID.length != 12) {
+        return util.buildResponse(400, {
+            message: 'laserID\'s length must be 12'
+        })
+    }
+
+    const encrytedLaserID = bcrypt.hashSync(laserID.trim(), 10);
     const user = {
         citizenID: citizenID,
-        laserID: laserID,  // or encrytedPW
+        laserID: encrytedLaserID,
         name: name,
         lastname: lastname,
         dateOfBirth: dateOfBirth,

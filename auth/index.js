@@ -8,7 +8,7 @@ const registerPath = '/register';
 const loginPath = '/login';
 const verifyPath = '/verify';
 
-export const handler = async(event) => {
+exports.handler = async(event) => {
     console.log('Request Event: ', event);
     let response;
     switch(true) {
@@ -24,7 +24,8 @@ export const handler = async(event) => {
             response = await loginService.login(loginBody);
             break;
         case event.httpMethod === 'POST' && event.path === verifyPath:
-            response = util.buildResponse(200);
+            const verifyBody = JSON.parse(event.body);
+            response = await verifyService.verify(verifyBody);
             break;
         default:
             response = util.buildResponse(404, '404 Not Found');
