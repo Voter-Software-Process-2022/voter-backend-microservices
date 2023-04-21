@@ -17,7 +17,7 @@ services:
       dockerfile: Dockerfile
     container_name: candidate
     ports:
-      - 4000:4000
+      - 4000:4001
     environment:
       - AWS_BUCKET_NAME=voter-attachements
       - AWS_BUCKET_REGION=ap-southeast-1
@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile
     container_name: vote
     ports:
-      - 5000:5000
+      - 5000:8001
     environment:
       - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
       - AWS_SECRET_ACCESS_KEY=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
