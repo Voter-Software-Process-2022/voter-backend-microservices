@@ -17,7 +17,6 @@ import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 const ballotId = uuid()
 
 const Vote: React.FC = () => {
-  const { voteTopicId } = useParams()
   const [selectedCandidate, setSelectedCandidate] = useState<CandidateI | null>(
     null,
   )
@@ -30,13 +29,7 @@ const Vote: React.FC = () => {
   useEffect(() => {
     const onFetchCandidates = async () => {
       setIsLoading(true)
-      if (!voteTopicId) return
-      const { payload }: any =
-        voteTopicId === '1'
-          ? await dispatch(fetchMpCandidates())
-          : await dispatch(
-              fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
-            )
+      const { payload }: any = await dispatch(fetchMpCandidates())
       setCandidates([
         ...payload,
         {
@@ -63,13 +56,12 @@ const Vote: React.FC = () => {
   }
 
   const onSubmitHandler = async () => {
-    if (!selectedCandidate || !voteTopicId) return
+    if (!selectedCandidate) return
     setIsLoading(true)
     selectedCandidate.id !== 0
       ? await dispatch(
           fetchVoteSubmit({
             ballotId: ballotId,
-            voteTopicId: parseInt(voteTopicId),
             candidateId: selectedCandidate.id,
             areaId: selectedCandidate.areaId,
           }),
@@ -77,7 +69,6 @@ const Vote: React.FC = () => {
       : await dispatch(
           fetchVoteNo({
             ballotId: ballotId,
-            voteTopicId: parseInt(voteTopicId),
           }),
         )
     setIsLoading(false)
@@ -88,13 +79,11 @@ const Vote: React.FC = () => {
     isActive: boolean,
     onConfirm: (value: unknown) => void,
   ) => {
-    if (!voteTopicId) return
     onConfirm(isActive)
     setIsLoading(true)
     await dispatch(
       fetchVoteNo({
         ballotId: ballotId,
-        voteTopicId: parseInt(voteTopicId),
       }),
     )
     setIsLoading(false)
@@ -128,9 +117,7 @@ const Vote: React.FC = () => {
               result later. !!!
             </p>
           </span>
-          <span className='text-md lg:text-xl'>{`Vote for ${
-            voteTopicId === '1' ? 'MPS' : 'Party'
-          }`}</span>
+          <span className='text-md lg:text-xl'>{'Vote for MPS'}</span>
         </div>
         <div className='flex flex-col items-center justify-between px-8 mt-8 lg:flex-row'>
           <div className='flex flex-col'>

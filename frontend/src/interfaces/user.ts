@@ -1,4 +1,13 @@
-import type { UserInformation } from '../generated'
+export interface UserInformation {
+  citizenID: number
+  name: string
+  lastname: string
+  dateOfBirth: string
+  location: string
+  nationality: string
+  religion: string
+  hasRight: boolean
+}
 
 export interface IUser {
   isAuthenticated: boolean

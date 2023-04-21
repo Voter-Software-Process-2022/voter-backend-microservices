@@ -23,7 +23,6 @@ const SeeAllBallot: React.FC = () => {
   const authUser = useSelector(
     (state: RootState) => state.user.authUser as UserInformation,
   )
-  const { voteTopicId } = useParams()
   const dispatch = useAppDispatch()
   const [candidates, setCandidates] = useState<number[]>()
   const [ballotList, setBallotList] = useState<any[]>()
@@ -31,15 +30,14 @@ const SeeAllBallot: React.FC = () => {
   useEffect(() => {
     const onFetchVoteAllBallot = async () => {
       setIsLoading(true)
-      if (!voteTopicId || !authUser || !authUser.DistricID) return
+      if (!authUser || !authUser.DistricID) return
       const { payload: ballotPayload }: any = await dispatch(
         fetchVoteAllBallot({
-          voteTopicId: parseInt(voteTopicId),
           areaId: authUser.DistricID,
         }),
       )
       const { payload: candidatePayload }: any = await dispatch(
-        fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+        fetchAllCandidates(),
       )
       setBallotList(ballotPayload)
       setCandidates([
@@ -86,10 +84,7 @@ const SeeAllBallot: React.FC = () => {
       ) : (
         <div className='mx-auto max-w-4xl py-16 px-8 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8'>
           <div className='flex items-center justify-between relative'>
-            <Title
-              voteTopicId={voteTopicId ?? ''}
-              isThaiLanguage={isThaiLanguage}
-            />
+            <Title isThaiLanguage={isThaiLanguage} />
             <SearchBar
               onChangeHandler={searchHandler}
               placeholderWord={selectedSearch.ballotId}
@@ -119,19 +114,13 @@ const SeeAllBallot: React.FC = () => {
   )
 }
 
-const Title = ({
-  voteTopicId,
-  isThaiLanguage,
-}: {
-  voteTopicId: string
-  isThaiLanguage: boolean
-}) => {
-  const topic = voteTopicId === '1' ? 'MPS' : 'Party'
+const Title = ({ isThaiLanguage }: { isThaiLanguage: boolean }) => {
+  const topic = 'Party'
 
   if (isThaiLanguage) {
     return (
       <span className='text-black font-semibold text-2xl w-64'>
-        บัตรเลือกตั้งสำหรับ{topic === 'MPS' ? 'สส.' : 'พรรค'}
+        บัตรเลือกตั้งสำหรับ{'พรรค'}
       </span>
     )
   } else {

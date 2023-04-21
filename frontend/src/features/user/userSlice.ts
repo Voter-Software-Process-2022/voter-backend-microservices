@@ -106,15 +106,6 @@ export const userSlice = createSlice({
       state.allowedVoteTopics = []
       Cookies.remove('token')
     })
-    builder.addCase(
-      fetchUserRightToVote.fulfilled,
-      (state, action: PayloadAction<VoteAvailableResponse[]>) => {
-        const { payload } = action
-        state.allowedVoteTopics = payload.map(
-          (topic) => topic.voteTopicId ?? -1,
-        )
-      },
-    )
     builder.addCase(fetchUserRightToVote.rejected, (state) => {
       state.allowedVoteTopics = []
     })

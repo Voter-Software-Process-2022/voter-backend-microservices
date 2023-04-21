@@ -24,13 +24,13 @@ const routes = (user: IUser) => [
     path: '/login',
     element: !user.isAuthenticated ? <SignIn /> : <Navigate to='/' />,
   },
-  { path: '/topics/:voteTopicId', element: <Info /> },
+  { path: '/topics/', element: <Info /> },
   {
     path: 'topics/candidate/:partyId',
     element: <PartyMember />,
   },
   {
-    path: '/topics/:voteTopicId/vote',
+    path: '/topics//vote',
     element:
       user.isAuthenticated && user.isAcceptedRules ? (
         <Vote />
@@ -38,7 +38,7 @@ const routes = (user: IUser) => [
         <Navigate to='/forbidden' />
       ),
   },
-  { path: '/ballots/:voteTopicId', element: <SeeAllBallot /> },
+  { path: '/ballots/', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
   { path: '/forbidden', element: <Forbidden /> },

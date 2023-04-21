@@ -1,27 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { CandidateApi } from '../../generated'
 
-const candidateApi = new CandidateApi()
-
+// TODO: replace candidateApi with the new endpoint
 export const fetchAllCandidates = createAsyncThunk(
   'user/fetchAllCandidates',
-  async ({ voteTopicId }: { voteTopicId: number }) => {
-    const { data } = await candidateApi.candidateVoteTopicIdGet(voteTopicId)
+  async () => {
+    const { data } = await candidateApi.candidateVoteTopicIdGet()
     return data
   },
 )
 
 export const fetchCandidateDetails = createAsyncThunk(
   'user/fetchCandidateDetails',
-  async ({
-    voteTopicId,
-    candidateId,
-  }: {
-    voteTopicId: number
-    candidateId: number
-  }) => {
+  async ({ candidateId }: { candidateId: number }) => {
     const { data } = await candidateApi.candidateVoteTopicIdCandidateIdGet(
-      voteTopicId,
       candidateId,
     )
     return data

@@ -8,10 +8,9 @@ export const voteApi = new VoteApi()
 
 export const fetchVoteSubmit = createAsyncThunk(
   'vote/fetchVoteSubmit',
-  async ({ ballotId, voteTopicId, candidateId, areaId }: VoteRequest) => {
+  async ({ ballotId, candidateId, areaId }: VoteRequest) => {
     const submitVoteInput = {
       ballotId: ballotId,
-      voteTopicId: voteTopicId,
       candidateId: candidateId,
       areaId: areaId,
     }
@@ -26,10 +25,9 @@ export const fetchVoteSubmit = createAsyncThunk(
 
 export const fetchVoteNo = createAsyncThunk(
   'vote/fetchVoteNo',
-  async ({ ballotId, voteTopicId }: VoteNoRequest) => {
+  async ({ ballotId }: VoteNoRequest) => {
     const submitVoteNoInput = {
       ballotId: ballotId,
-      voteTopicId: voteTopicId,
     }
     const token = Cookies.get('token')
     const options = {
@@ -54,9 +52,8 @@ export const fetchMpCandidates = createAsyncThunk(
 
 export const fetchVoteAllBallot = createAsyncThunk(
   'vote/fetchVoteAllBallot',
-  async ({ voteTopicId, areaId }: GetAllBallotRequest) => {
+  async ({ areaId }: GetAllBallotRequest) => {
     const submitVoteAllBallot: GetAllBallotRequest = {
-      voteTopicId: voteTopicId,
       areaId: areaId,
     }
     const { data } = await voteApi.voteAllBallotPost(submitVoteAllBallot)

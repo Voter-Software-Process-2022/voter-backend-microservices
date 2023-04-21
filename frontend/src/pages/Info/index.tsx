@@ -17,19 +17,13 @@ const Info: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
   const [canVote, setCanVote] = useState<boolean>(false)
-  const { voteTopicId } = useParams()
+  const authUser = useSelector((state: RootState) => state.user.authUser)
   const dispatch = useAppDispatch()
-  const userAllowedTopics = useSelector(
-    (state: RootState) => state.user.allowedVoteTopics,
-  )
   const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
 
   useEffect(() => {
     const verifyRightToVote = () => {
-      if (!voteTopicId || !userAllowedTopics) return
-      if (userAllowedTopics.includes(parseInt(voteTopicId))) {
-        setCanVote(true)
-      }
+      setCanVote()
     }
     verifyRightToVote()
   })
@@ -37,26 +31,18 @@ const Info: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
-      if (!voteTopicId) return
       let fetchCandidate: any
-      if (voteTopicId === '1') {
-        const { payload }: any = verifyUserAuthenticated
-          ? await dispatch(fetchMpCandidates())
-          : await dispatch(
-              fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
-            )
-        fetchCandidate = payload
-      } else {
-        const { payload }: any = await dispatch(
-          fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
-        )
-        fetchCandidate = payload
-      }
+
+      const { payload }: any = verifyUserAuthenticated
+        ? await dispatch(fetchMpCandidates())
+        : await dispatch(fetchAllCandidates())
+      fetchCandidate = payload
+
       setCandidates(fetchCandidate)
       setIsLoading(false)
     }
     fetchData()
-  }, [voteTopicId])
+  }, [])
 
   return (
     <div className='min-h-screen bg-white'>
@@ -85,10 +71,9 @@ const Info: React.FC = () => {
               isOpenSidebar={isOpenSidebar}
               setIsOpenSidebar={setIsOpenSidebar}
             />
-            {voteTopicId && candidates ? (
+            {candidates ? (
               <Fragment>
                 <InfoList
-                  voteTopicId={parseInt(voteTopicId)}
                   candidates={candidates}
                 />
                 <button
@@ -106,7 +91,6 @@ const Info: React.FC = () => {
               </div>
             )}
             <RuleModal
-              topicId={voteTopicId}
               canVote={canVote}
               isOpenRuleModal={isOpenRuleModal}
               setIsOpenRuleModal={setIsOpenRuleModal}

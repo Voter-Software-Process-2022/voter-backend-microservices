@@ -5,7 +5,6 @@ import '@testing-library/jest-dom'
 import InfoCard from '../../components/InfoCard'
 
 const mockPropInfoSingleCard = {
-  voteTopicId: 0,
   candidate: {
     id: 1,
     name: 'John Doe',
@@ -17,10 +16,7 @@ describe('test info card', () => {
   test('render info card with mock up candidate', () => {
     render(
       <BrowserRouter>
-        <InfoCard
-          voteTopicId={mockPropInfoSingleCard.voteTopicId}
-          candidate={mockPropInfoSingleCard.candidate}
-        />
+        <InfoCard candidate={mockPropInfoSingleCard.candidate} />
       </BrowserRouter>,
     )
     const idText = screen.getByTestId('id-field')
@@ -35,10 +31,7 @@ describe('test info card', () => {
   test('click see details link', () => {
     render(
       <BrowserRouter>
-        <InfoCard
-          voteTopicId={mockPropInfoSingleCard.voteTopicId}
-          candidate={mockPropInfoSingleCard.candidate}
-        />
+        <InfoCard candidate={mockPropInfoSingleCard.candidate} />
       </BrowserRouter>,
     )
     const idText = screen.getByTestId('id-field')
