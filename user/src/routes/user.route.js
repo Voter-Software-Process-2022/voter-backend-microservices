@@ -6,24 +6,23 @@ const router = express.Router()
 
 // Get right to vote (pre-verify)
 router.get('/pre-verify', deserializeUser, async (req, res) => {
-  const data = res.locals.user;
-  console.log("data", data);
+  const data = res.locals.user
 
   if (!data) {
     return res.status(401).json({ success: false, message: 'Not found' })
   }
 
   return res.status(200).json({ hasRight: data.hasRight })
-}) 
+})
 
 // already vote
 router.post('/vote-taken', async (req, res) => {
-  const citizenID = req.body.citizenID;
+  const citizenID = req.body.citizenID
 
-  const { success, data } = await findById(citizenID);
+  const { success, data } = await findById(citizenID)
 
   if (!data.hasRight) {
-    return res.status(200).json({ success: true, messgae: 'User already vote'})
+    return res.status(200).json({ success: true, messgae: 'User already vote' })
   }
 
   if (!success) {
@@ -34,27 +33,29 @@ router.post('/vote-taken', async (req, res) => {
     return res.status(401).json({ success: false, message: 'Not found' })
   }
 
-  const saved = await save({ ...{
-    citizenID: data.citizenID,
-    laserID: data.laserID,
-    name: data.name,
-    lastname: data.lastname,
-    dateOfBirth: data.dateOfBirth,
-    religion: data.religion,
-    location: data.location,
-    nationality: data.nationality,
-    hasRight: false
-  }});
+  const saved = await save({
+    ...{
+      citizenID: data.citizenID,
+      laserID: data.laserID,
+      name: data.name,
+      lastname: data.lastname,
+      dateOfBirth: data.dateOfBirth,
+      religion: data.religion,
+      location: data.location,
+      nationality: data.nationality,
+      hasRight: false,
+    },
+  })
 
   if (!saved.success) {
     return res.status(500).json({ success: false, message: 'Error' })
   }
 
-  return res.status(200).json({ success: true, messgae: 'Voted'})
+  return res.status(200).json({ success: true, messgae: 'Voted' })
 })
 
 router.get('/me', deserializeUser, async (req, res) => {
-  return res.locals.user;
-}) 
+  return res.status(200).json({ success: true, user: res.locals.user })
+})
 
 export default router
