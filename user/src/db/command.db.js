@@ -17,7 +17,6 @@ const create = async (data = {}) => {
 
 // Update data
 const save = async (data = {}) => {
-  console.log(data)
   const params = {
     TableName: tableName,
     Item: data,
