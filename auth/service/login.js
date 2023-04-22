@@ -34,7 +34,13 @@ async function login(user) {
 
     const userInfo = {
         citizenID: dynamoUser.citizenID,
-        laserID: dynamoUser.laserID
+        name: dynamoUser.name,
+        lastname: dynamoUser.lastname,
+        dateOfBirth: dynamoUser.dateOfBirth,
+        religion: dynamoUser.religion,
+        location: dynamoUser.location,
+        nationality: dynamoUser.nationality,
+        hasRight: dynamoUser.hasRight
     }
     const token = auth.generateToken(userInfo)
     const response = {
