@@ -14,6 +14,6 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm install --only=production
 
-EXPOSE 80
+EXPOSE 5001
 
 CMD [ "npm", "run", "start" ]

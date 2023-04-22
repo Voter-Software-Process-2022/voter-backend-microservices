@@ -16,6 +16,21 @@ services:
       - AWS_SECRET_ACCESS_KEY=avq96bFmN8pOw6W7zddXJCQMkvJ1v/xH9J8nwfn/
     restart: 'no'
 
+  user:
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/user:latest
+    build:
+      context: ./candidate
+      dockerfile: Dockerfile
+    container_name: candidate
+    ports:
+      - 5001
+    environment:
+      - AWS_GATEWAY=https://o19hl9r57i.execute-api.us-east-1.amazonaws.com/prod
+      - AWS_API_KEY=HHKITwLzYU1lAwLNj1pO84fT3DBb4b1d4qOMPX0E
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQKUISJDSZ
+      - AWS_SECRET_ACCESS_KEY=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
+    restart: 'no'
+
   vote:
     image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/vote:latest
     build:
@@ -23,8 +38,11 @@ services:
       dockerfile: Dockerfile
     container_name: vote
     ports:
-      - 8001
+      - 6001
     environment:
       - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
       - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
+    depends_on:
+      - candidate
+      - user
