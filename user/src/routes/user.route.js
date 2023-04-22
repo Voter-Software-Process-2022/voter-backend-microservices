@@ -1,25 +1,22 @@
 import express from 'express'
 import { save, findById } from '../db/command.db.js'
+import { deserializeUser } from '../middleware/deserializeUser.js'
 
 const router = express.Router()
 
 // Get right to vote (pre-verify)
-router.get('/pre-verify', async (req, res) => {
-  const citizenID = req.body.citizenID;
+router.get('/pre-verify', deserializeUser, async (req, res) => {
+  const data = res.locals.user;
+  console.log("data", data);
 
-  const { success, data } = await findById(citizenID);
-
-  if (!success) {
-    return res.status(500).json({ success: false, message: 'Error' })
-  }
-
-  if (Object.keys(data).length <= 0) {
+  if (!data) {
     return res.status(401).json({ success: false, message: 'Not found' })
   }
 
   return res.status(200).json({ hasRight: data.hasRight })
 }) 
 
+// already vote
 router.post('/vote-taken', async (req, res) => {
   const citizenID = req.body.citizenID;
 
@@ -55,5 +52,9 @@ router.post('/vote-taken', async (req, res) => {
 
   return res.status(200).json({ success: true, messgae: 'Voted'})
 })
+
+router.get('/me', deserializeUser, async (req, res) => {
+  return res.locals.user;
+}) 
 
 export default router
