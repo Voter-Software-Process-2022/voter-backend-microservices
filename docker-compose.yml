@@ -1,9 +1,8 @@
 version: '3'
-# x-aws-vpc: "vpc-04126a79b32438b96"
+x-aws-vpc: "vpc-04126a79b32438b96"
 services:
   candidate:
-    image: candidate
-    # image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/candidate:latest
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/candidate:latest
     build:
       context: ./candidate
       dockerfile: Dockerfile
@@ -18,12 +17,11 @@ services:
     restart: 'no'
 
   user:
-    image: user
-    # image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/user:latest
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/user:latest
     build:
-      context: ./candidate
+      context: ./user
       dockerfile: Dockerfile
-    container_name: candidate
+    container_name: user
     ports:
       - 5001:5001
     environment:
@@ -34,8 +32,7 @@ services:
     restart: 'no'
 
   vote:
-    image: vote
-    # image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/vote:latest
     build:
       context: ./vote
       dockerfile: Dockerfile
