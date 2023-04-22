@@ -16,7 +16,6 @@ import {
 import { alertErrorMessage } from '../utils/alert'
 
 const RuleModal: React.FC<RuleModalProps> = ({
-  topicId,
   canVote,
   isOpenRuleModal,
   setIsOpenRuleModal,
@@ -36,18 +35,18 @@ const RuleModal: React.FC<RuleModalProps> = ({
     }
   }
 
-  const onClickHandler = (topicId: string | undefined) => {
+  const onClickHandler = () => {
     if (!canVote) {
       setIsOpenRuleModal(false)
       alertErrorMessage(
         !verifyUserAuthenticated
           ? 'You are not signed in or your token has expired!'
-          : 'You already voted this topic!',
+          : 'You already voted!',
         false,
       )
     } else {
       dispatch(setIsAcceptedRules(true))
-      navigate(`/topics/${topicId}/vote`)
+      navigate('/topics/vote')
     }
   }
 
@@ -105,7 +104,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
           </p>
           <button
             disabled={!checked}
-            onClick={() => onClickHandler(topicId)}
+            onClick={onClickHandler}
             className={`${
               checked
                 ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'

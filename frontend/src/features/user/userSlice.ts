@@ -82,5 +82,6 @@ export const { setIsAuthenticated, setIsAcceptedRules, setAuthUser } =
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated
+export const authenticatedUser = (state: RootState) => state.user.authUser
 
 export default userSlice.reducer

@@ -6,14 +6,13 @@ import {
   thaiSearchPlaceholder,
   englishSearchPlaceholder,
 } from '../../config/searchWords'
-import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { fetchVoteAllBallot } from '../../features/vote/voteSlice'
 import type { RootState } from '../../app/store'
-import type { UserInformation } from '../../generated'
 import { useAppDispatch } from '../../app/hooks'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import type { CandidateI } from '../../interfaces/candidate'
+import type { UserInformation } from '../../interfaces/user'
 
 const SeeAllBallot: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -30,11 +29,9 @@ const SeeAllBallot: React.FC = () => {
   useEffect(() => {
     const onFetchVoteAllBallot = async () => {
       setIsLoading(true)
-      if (!authUser || !authUser.DistricID) return
+      if (!authUser) return
       const { payload: ballotPayload }: any = await dispatch(
-        fetchVoteAllBallot({
-          areaId: authUser.DistricID,
-        }),
+        fetchVoteAllBallot(),
       )
       const { payload: candidatePayload }: any = await dispatch(
         fetchAllCandidates(),
