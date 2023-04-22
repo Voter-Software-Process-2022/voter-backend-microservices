@@ -29,7 +29,7 @@ exports.handler = async(event) => {
             const verifyBody = JSON.parse(event.body);
             response = await verifyService.verify(verifyBody);
             break;
-        case event.httpMethod === 'GET' && event.path === tokenPath:
+        case event.httpMethod === 'POST' && event.path === tokenPath:
             const tokenBody = JSON.parse(event.body);
             response = await tokenService.verifyToken(tokenBody);
             break;
