@@ -12,7 +12,9 @@ function verifyToken(requestBody) {
     const token = requestBody.token;
     const deserialized = auth.jwtVerify(token);
     if (!deserialized.success) {
-        return util.buildResponse(401, verification);
+        return util.buildResponse(401, {
+            success: false
+        });
     }
 
     return util.buildResponse(200, deserialized.user)
