@@ -1,23 +1,14 @@
 version: '3'
+x-aws-vpc: "vpc-04126a79b32438b96"
 services:
-  frontend:
-    image: frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    ports:
-      - 3000:3000
-    restart: 'no'
-
   candidate:
-    image: candidate
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/candidate:latest
     build:
       context: ./candidate
       dockerfile: Dockerfile
     container_name: candidate
     ports:
-      - 4000:4001
+      - 4001
     environment:
       - AWS_BUCKET_NAME=voter-attachements
       - AWS_BUCKET_REGION=ap-southeast-1
@@ -26,13 +17,13 @@ services:
     restart: 'no'
 
   vote:
-    image: vote
+    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/vote:latest
     build:
       context: ./vote
       dockerfile: Dockerfile
     container_name: vote
     ports:
-      - 5000:8001
+      - 8001
     environment:
       - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDQHW2IFC
       - AWS_SECRET_ACCESS_KEY=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
