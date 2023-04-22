@@ -33,6 +33,23 @@ function verifyToken(citizenID, token) {
     })
 }
 
+function jwtVerify(token) {
+    return jwt.verify(token, process.env.JWT_SECRET, (error, response) => {
+        if (error) {
+            return {
+                success: false,
+                message: 'invalid token'
+            }
+        }
+
+        return {
+            success: true,
+            user: response
+        }
+    })
+}
+
 module.exports.generateToken = generateToken;
 module.exports.verifyToken = verifyToken;
+module.exports.jwtVerify = jwtVerify;
 
