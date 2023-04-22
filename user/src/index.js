@@ -1,10 +1,10 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 import user from './routes/user.route.js'
 
-dotenv.config()
+// dotenv.config()
 
 const app = express()
 
