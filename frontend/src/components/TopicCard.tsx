@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 import { thaiTopic, englishTopic } from '../config/topicWords'
 import type { TopicCardProps } from '../interfaces/components/topicCard'
 
-const TopicCard: React.FC<TopicCardProps> = ({ topicId, topicName, isThaiLanguage }) => {
+const TopicCard: React.FC<TopicCardProps> = ({
+  topicId,
+  topicName,
+  isThaiLanguage,
+}) => {
   const selectedRule = isThaiLanguage ? thaiTopic : englishTopic
 
   return (

@@ -47,7 +47,10 @@ const Info: React.FC = () => {
   return (
     <div className='min-h-screen bg-white'>
       <div className='flex flex-col'>
-        <Navbar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+        <Navbar
+          isOpenSidebar={isOpenSidebar}
+          setIsOpenSidebar={setIsOpenSidebar}
+        />
         {isLoading ? (
           <Loader />
         ) : (
@@ -64,7 +67,10 @@ const Info: React.FC = () => {
               pauseOnHover
               theme='dark'
             />
-            <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+            <Sidebar
+              isOpenSidebar={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
             {candidates ? (
               <Fragment>
                 <InfoList candidates={candidates} />
@@ -82,7 +88,11 @@ const Info: React.FC = () => {
                 </span>
               </div>
             )}
-            <RuleModal canVote={canVote} isOpenRuleModal={isOpenRuleModal} setIsOpenRuleModal={setIsOpenRuleModal} />
+            <RuleModal
+              canVote={canVote}
+              isOpenRuleModal={isOpenRuleModal}
+              setIsOpenRuleModal={setIsOpenRuleModal}
+            />
           </div>
         )}
       </div>

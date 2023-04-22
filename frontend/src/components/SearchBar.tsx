@@ -6,7 +6,10 @@ interface SearchBarProps {
   onChangeHandler: ChangeEventHandler<HTMLInputElement>
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholderWord, onChangeHandler }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  placeholderWord,
+  onChangeHandler,
+}) => {
   return (
     <div className='pt-2 relative mx-auto xs:w-full md:w-auto text-gray-600'>
       <div className='flex flex-row border-2 px-5 mr-2 border-gray-300 bg-white rounded-full'>

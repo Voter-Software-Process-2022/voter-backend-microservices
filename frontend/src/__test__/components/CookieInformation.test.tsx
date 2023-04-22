@@ -55,6 +55,8 @@ describe('CookieInformation', () => {
     const learnMoreButton = screen.getByText('Learn more')
     expect(learnMoreButton).toBeDefined()
 
-    expect(learnMoreButton.getAttribute('href')).toBe('https://www.cloudflare.com/learning/privacy/what-are-cookies/')
+    expect(learnMoreButton.getAttribute('href')).toBe(
+      'https://www.cloudflare.com/learning/privacy/what-are-cookies/',
+    )
   })
 })

@@ -29,9 +29,15 @@ const CandidateDetail: React.FC = () => {
 
   return (
     <div className='w-full overflow-x-hidden bg-white min-h-screen'>
-      <Navbar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+      <Navbar
+        isOpenSidebar={isOpenSidebar}
+        setIsOpenSidebar={setIsOpenSidebar}
+      />
       <div className='relative h-full'>
-        <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+        <Sidebar
+          isOpenSidebar={isOpenSidebar}
+          setIsOpenSidebar={setIsOpenSidebar}
+        />
         {isLoading ? (
           <Loader />
         ) : (

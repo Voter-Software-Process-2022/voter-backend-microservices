@@ -23,12 +23,19 @@ export const fetchVoteSubmit = createAsyncThunk(
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const { data } = await client.post('/votes/submit', submitVoteInput, options)
+    const { data } = await client.post(
+      '/votes/submit',
+      submitVoteInput,
+      options,
+    )
     return data
   },
 )
 
-export const fetchVoteAllBallot = createAsyncThunk('vote/fetchVoteAllBallot', async () => {
-  const { data } = await client.get('/votes/ballots')
-  return data
-})
+export const fetchVoteAllBallot = createAsyncThunk(
+  'vote/fetchVoteAllBallot',
+  async () => {
+    const { data } = await client.get('/votes/ballots')
+    return data
+  },
+)

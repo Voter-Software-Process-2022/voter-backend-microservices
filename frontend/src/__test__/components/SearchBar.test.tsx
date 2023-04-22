@@ -16,7 +16,9 @@ describe('SubscribeSection', () => {
       </BrowserRouter>,
     )
 
-    const inputField = screen.getByPlaceholderText(`${mockProp.placeholderWord}`)
+    const inputField = screen.getByPlaceholderText(
+      `${mockProp.placeholderWord}`,
+    )
     expect(inputField).toBeDefined()
   })
 })

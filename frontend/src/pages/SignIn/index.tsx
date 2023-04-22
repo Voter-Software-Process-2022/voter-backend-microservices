@@ -37,7 +37,10 @@ const SignIn: React.FC = () => {
     const { payload } = await dispatch(fetchLogin(data))
     setIsLoading(false)
     if (!payload) {
-      alertErrorMessage('Cannot authenticate with this CitizenID and LaserID', true)
+      alertErrorMessage(
+        'Cannot authenticate with this CitizenID and LaserID',
+        true,
+      )
     }
   }
 
@@ -57,7 +60,10 @@ const SignIn: React.FC = () => {
         theme='light'
       />
       <div className='container flex flex-col items-center justify-center flex-1 max-w-lg px-2 mx-auto'>
-        <form onSubmit={onSubmitHandler} className='w-full px-6 py-8 text-black bg-white rounded-lg shadow-md'>
+        <form
+          onSubmit={onSubmitHandler}
+          className='w-full px-6 py-8 text-black bg-white rounded-lg shadow-md'
+        >
           <div className='relative flex flex-row items-center justify-center mb-8 text-3xl'>
             <Link to='/'>
               <IoChevronBackOutline className='top-1/2 absolute left-0 -translate-y-1/2 border border-gray-300 rounded-md' />

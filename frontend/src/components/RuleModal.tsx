@@ -9,10 +9,18 @@ import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { isUserAuthenticated, setIsAcceptedRules } from '../features/user/userSlice'
+import {
+  isUserAuthenticated,
+  setIsAcceptedRules,
+} from '../features/user/userSlice'
 import { alertErrorMessage } from '../utils/alert'
 
-const RuleModal: React.FC<RuleModalProps> = ({ topicId, canVote, isOpenRuleModal, setIsOpenRuleModal }) => {
+const RuleModal: React.FC<RuleModalProps> = ({
+  topicId,
+  canVote,
+  isOpenRuleModal,
+  setIsOpenRuleModal,
+}) => {
   const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const [checked, setChecked] = useState<boolean>(false)
   const navigate = useNavigate()
@@ -32,7 +40,9 @@ const RuleModal: React.FC<RuleModalProps> = ({ topicId, canVote, isOpenRuleModal
     if (!canVote) {
       setIsOpenRuleModal(false)
       alertErrorMessage(
-        !verifyUserAuthenticated ? 'You are not signed in or your token has expired!' : 'You already voted this topic!',
+        !verifyUserAuthenticated
+          ? 'You are not signed in or your token has expired!'
+          : 'You already voted this topic!',
         false,
       )
     } else {
@@ -56,7 +66,10 @@ const RuleModal: React.FC<RuleModalProps> = ({ topicId, canVote, isOpenRuleModal
         <Box className='w-full'>
           <div className='relative flex justify-between items-center'>
             <Stack direction='row' spacing={1} alignItems='center'>
-              <LanguageSwitcher isOpen={isThaiLanguage} setIsOpen={setIsThaiLanguage} />
+              <LanguageSwitcher
+                isOpen={isThaiLanguage}
+                setIsOpen={setIsThaiLanguage}
+              />
             </Stack>
             <Typography
               id='modal-modal-title'
@@ -64,7 +77,10 @@ const RuleModal: React.FC<RuleModalProps> = ({ topicId, canVote, isOpenRuleModal
             >
               {selectedRule.title}
             </Typography>
-            <IoCloseOutline onClick={() => setIsOpenRuleModal(false)} className='border border-gray-300 rounded-md' />
+            <IoCloseOutline
+              onClick={() => setIsOpenRuleModal(false)}
+              className='border border-gray-300 rounded-md'
+            />
           </div>
           <div
             className='w-full my-5 px-2 sm:px-10 mx-auto max-h-[220px] overflow-y-auto'
@@ -72,14 +88,21 @@ const RuleModal: React.FC<RuleModalProps> = ({ topicId, canVote, isOpenRuleModal
             ref={listInnerRef}
           >
             {selectedRule.penaltyAndPunishment.rules.map((rule, index) => (
-              <Typography className='!text-lg lg:text-base' id='modal-modal-description' sx={{ mt: 2 }} key={index}>
+              <Typography
+                className='!text-lg lg:text-base'
+                id='modal-modal-description'
+                sx={{ mt: 2 }}
+                key={index}
+              >
                 {index + 1}. {rule}
               </Typography>
             ))}
           </div>
         </Box>
         <div className='flex items-center'>
-          <p className='mt-[0.8rem] grow text-orange-800'>*** {selectedRule.penaltyAndPunishment.agree}</p>
+          <p className='mt-[0.8rem] grow text-orange-800'>
+            *** {selectedRule.penaltyAndPunishment.agree}
+          </p>
           <button
             disabled={!checked}
             onClick={() => onClickHandler(topicId)}

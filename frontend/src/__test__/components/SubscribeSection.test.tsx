@@ -13,7 +13,9 @@ describe('SubscribeSection', () => {
     )
 
     expect(screen.getByText('Get Our Updates')).toBeDefined()
-    expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
     const inputField = screen.getByPlaceholderText('john@mail.com')
     expect(inputField).toBeDefined()
     const subscribeButton = screen.getByTestId('subscribe-button')
@@ -28,7 +30,9 @@ describe('SubscribeSection', () => {
     )
 
     expect(screen.getByText('Get Our Updates')).toBeDefined()
-    expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
     const inputField = screen.getByPlaceholderText('john@mail.com')
     expect(inputField).toBeDefined()
     const subscribeButton = screen.getByTestId('subscribe-button')
@@ -46,7 +50,9 @@ describe('SubscribeSection', () => {
     )
 
     expect(screen.getByText('Get Our Updates')).toBeDefined()
-    expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
     const inputField = screen.getByPlaceholderText('john@mail.com')
     expect(inputField).toBeDefined()
     const subscribeButton = screen.getByTestId('subscribe-button')

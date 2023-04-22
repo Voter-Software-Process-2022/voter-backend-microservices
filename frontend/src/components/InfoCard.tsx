@@ -14,10 +14,16 @@ const InfoCard: React.FC<InfoCardProps> = ({ candidate }) => {
               alt='prayuth'
             />
           </div>
-          <h5 className='mb-1 text-xl font-medium text-gray-900 dark:text-white' data-testid='name-field'>
+          <h5
+            className='mb-1 text-xl font-medium text-gray-900 dark:text-white'
+            data-testid='name-field'
+          >
             {candidate.name}
           </h5>
-          <span className='text-xl text-gray-500 dark:text-gray-400' data-testid='id-field'>
+          <span
+            className='text-xl text-gray-500 dark:text-gray-400'
+            data-testid='id-field'
+          >
             # {candidate.id}
           </span>
           <div className='flex mt-4 space-x-3 md:mt-6'>

@@ -7,13 +7,19 @@ import uuid from 'react-uuid'
 import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
 import type { CandidateI } from '../../interfaces/candidate'
-import { fetchMpCandidates, fetchVoteNo, fetchVoteSubmit } from '../../features/vote/voteSlice'
+import {
+  fetchMpCandidates,
+  fetchVoteNo,
+  fetchVoteSubmit,
+} from '../../features/vote/voteSlice'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 
 const ballotId = uuid()
 
 const Vote: React.FC = () => {
-  const [selectedCandidate, setSelectedCandidate] = useState<CandidateI | null>(null)
+  const [selectedCandidate, setSelectedCandidate] = useState<CandidateI | null>(
+    null,
+  )
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isFinished, setIsFinished] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
@@ -69,7 +75,10 @@ const Vote: React.FC = () => {
     setIsFinished(true)
   }
 
-  const onLeavingPage = async (isActive: boolean, onConfirm: (value: unknown) => void) => {
+  const onLeavingPage = async (
+    isActive: boolean,
+    onConfirm: (value: unknown) => void,
+  ) => {
     onConfirm(isActive)
     setIsLoading(true)
     await dispatch(
@@ -100,10 +109,12 @@ const Vote: React.FC = () => {
           <span className='text-lg lg:text-3xl flex flex-col'>
             <p className='mb-[1rem]'>Ballot ID: {ballotId}</p>
             <p className='text-lg text-[red]'>
-              !!! The ballot will be considered as a void ballot if you close this page. !!!
+              !!! The ballot will be considered as a void ballot if you close
+              this page. !!!
             </p>
             <p className='text-lg text-[violet]'>
-              !!! Please remember your Ballot ID if you want to see your vote result later. !!!
+              !!! Please remember your Ballot ID if you want to see your vote
+              result later. !!!
             </p>
           </span>
           <span className='text-md lg:text-xl'>{'Vote for MPS'}</span>
@@ -145,14 +156,30 @@ const Vote: React.FC = () => {
 
 export default Vote
 
-function SelectedCandidatePicture({ selectedCandidate }: { selectedCandidate: CandidateI | null }) {
+function SelectedCandidatePicture({
+  selectedCandidate,
+}: {
+  selectedCandidate: CandidateI | null
+}) {
   if (selectedCandidate) {
     if (selectedCandidate.id === 0) {
-      return <span className='text-2xl lg:text-4xl font-semibold'>งดออกเสียง</span>
+      return (
+        <span className='text-2xl lg:text-4xl font-semibold'>งดออกเสียง</span>
+      )
     } else {
-      return <img src={selectedCandidate.pictureUrl} alt='' className='w-full h-full object-contain' />
+      return (
+        <img
+          src={selectedCandidate.pictureUrl}
+          alt=''
+          className='w-full h-full object-contain'
+        />
+      )
     }
   } else {
-    return <span className='text-2xl lg:text-4xl font-semibold'>Select candidate...</span>
+    return (
+      <span className='text-2xl lg:text-4xl font-semibold'>
+        Select candidate...
+      </span>
+    )
   }
 }

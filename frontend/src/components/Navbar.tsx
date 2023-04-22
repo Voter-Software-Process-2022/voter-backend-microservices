@@ -32,7 +32,9 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
     <div
       className={`w-full flex items-center justify-between py-3 px-6 sm:px-12h-[88px] top-0 z-10 ${
         isHomepage ? 'fixed' : 'static'
-      } ${!isScrolled ? 'bg-gray-900 lg:bg-transparent' : 'bg-gray-900 shadow-2xl'}`}
+      } ${
+        !isScrolled ? 'bg-gray-900 lg:bg-transparent' : 'bg-gray-900 shadow-2xl'
+      }`}
     >
       <div className='flex'>
         <div className='flex items-center'>
@@ -61,7 +63,10 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
             onClick={() => setIsOpenSidebar(true)}
           />
         ) : (
-          <VscClose className='lg:hidden text-4xl cursor-pointer' onClick={() => setIsOpenSidebar(false)} />
+          <VscClose
+            className='lg:hidden text-4xl cursor-pointer'
+            onClick={() => setIsOpenSidebar(false)}
+          />
         )}
         <div
           className={`hidden lg:flex items-center h-[40px] bg-[#ffffff17] rounded-lg ${
