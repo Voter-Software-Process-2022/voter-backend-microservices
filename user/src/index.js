@@ -1,10 +1,10 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 import user from './routes/user.route.js'
 
-dotenv.config()
+// dotenv.config()
 
 const app = express()
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/user', user)
 
-const PORT = 8001
+const PORT = 5001
 
 app.listen(PORT, () => {
   console.log(`Port listening on ${PORT}`)
