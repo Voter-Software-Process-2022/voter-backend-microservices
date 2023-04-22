@@ -6,9 +6,16 @@ const router = express.Router()
 
 // Get right to vote (pre-verify)
 router.get('/pre-verify', deserializeUser, async (req, res) => {
-  const data = res.locals.user
+  const user = res.locals.user
+  const citizenID = user.citizenID;
 
-  if (!data) {
+  const { success, data } = await findById(citizenID);
+
+  if (!success) {
+    return res.status(500).json({ success: false, message: 'Error' })
+  }
+
+  if (Object.keys(data).length <= 0) {
     return res.status(401).json({ success: false, message: 'Not found' })
   }
 
@@ -16,8 +23,9 @@ router.get('/pre-verify', deserializeUser, async (req, res) => {
 })
 
 // already vote
-router.post('/vote-taken', async (req, res) => {
-  const citizenID = req.body.citizenID
+router.post('/vote-taken', deserializeUser, async (req, res) => {
+  const user = res.locals.user
+  const citizenID = user.citizenID;
 
   const { success, data } = await findById(citizenID)
 
