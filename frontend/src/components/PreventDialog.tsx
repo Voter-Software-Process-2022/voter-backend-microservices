@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-} from '@mui/material'
+import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText } from '@mui/material'
 
 interface PreventDialogProps {
   isActive: boolean
@@ -14,11 +7,7 @@ interface PreventDialogProps {
   onCancel: (value: unknown) => void
 }
 
-const PreventDialog: React.FC<PreventDialogProps> = ({
-  isActive,
-  onConfirm,
-  onCancel,
-}) => {
+const PreventDialog: React.FC<PreventDialogProps> = ({ isActive, onConfirm, onCancel }) => {
   return (
     <Dialog
       open={isActive}

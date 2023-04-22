@@ -14,9 +14,7 @@ export function sessionGet(key: string) {
 
 export function sessionSet(key: string, value: any) {
   // expired in one week
-  const expirationDate = new Date(
-    new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
-  )
+  const expirationDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
   const newValue = {
     value: value,
     expirationDate: expirationDate.toISOString(),

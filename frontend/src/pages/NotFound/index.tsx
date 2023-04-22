@@ -13,9 +13,7 @@ const NotFound = () => {
           <h1 className='font-extrabold text-5xl text-center text-white leading-tight pt-[5rem] '>
             You are all alone here
           </h1>
-          <p className='font-extrabold text-8xl my-44 text-white animate-bounce'>
-            404
-          </p>
+          <p className='font-extrabold text-8xl my-44 text-white animate-bounce'>404</p>
         </div>
       </div>
     </div>

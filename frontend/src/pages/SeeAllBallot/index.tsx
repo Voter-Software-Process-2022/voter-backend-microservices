@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react'
 import LanguageSwitcher from '../../components/LanguageSwitcher'
 import { Navbar, Sidebar, BallotShow, Loader } from '../../components'
 import SearchBar from '../../components/SearchBar'
-import {
-  thaiSearchPlaceholder,
-  englishSearchPlaceholder,
-} from '../../config/searchWords'
+import { thaiSearchPlaceholder, englishSearchPlaceholder } from '../../config/searchWords'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { fetchVoteAllBallot } from '../../features/vote/voteSlice'
@@ -20,9 +17,7 @@ const SeeAllBallot: React.FC = () => {
   const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const [filterNumber, setFilterNumber] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const authUser = useSelector(
-    (state: RootState) => state.user.authUser as UserInformation,
-  )
+  const authUser = useSelector((state: RootState) => state.user.authUser as UserInformation)
   const dispatch = useAppDispatch()
   const [candidates, setCandidates] = useState<number[]>()
   const [ballotList, setBallotList] = useState<any[]>()
@@ -36,14 +31,9 @@ const SeeAllBallot: React.FC = () => {
           areaId: authUser.DistricID,
         }),
       )
-      const { payload: candidatePayload }: any = await dispatch(
-        fetchAllCandidates(),
-      )
+      const { payload: candidatePayload }: any = await dispatch(fetchAllCandidates())
       setBallotList(ballotPayload)
-      setCandidates([
-        ...candidatePayload.map((candidate: CandidateI) => candidate.id),
-        0,
-      ])
+      setCandidates([...candidatePayload.map((candidate: CandidateI) => candidate.id), 0])
       setIsLoading(false)
     }
     onFetchVoteAllBallot()
@@ -54,30 +44,18 @@ const SeeAllBallot: React.FC = () => {
   }
 
   const filteredBallotList = ballotList?.filter((ballot) =>
-    ballot.ballotId
-      .toString()
-      .toLowerCase()
-      .includes(filterNumber.toLowerCase()),
+    ballot.ballotId.toString().toLowerCase().includes(filterNumber.toLowerCase()),
   )
 
-  const selectedSearch = isThaiLanguage
-    ? thaiSearchPlaceholder
-    : englishSearchPlaceholder
+  const selectedSearch = isThaiLanguage ? thaiSearchPlaceholder : englishSearchPlaceholder
 
-  const selectedBallotList =
-    filterNumber === '' ? ballotList : filteredBallotList
+  const selectedBallotList = filterNumber === '' ? ballotList : filteredBallotList
 
   return (
     <div className='w-full overflow-x-hidden min-h-screen bg-white'>
-      <Navbar
-        isOpenSidebar={isOpenSidebar}
-        setIsOpenSidebar={setIsOpenSidebar}
-      />
+      <Navbar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       <div className='relative'>
-        <Sidebar
-          isOpenSidebar={isOpenSidebar}
-          setIsOpenSidebar={setIsOpenSidebar}
-        />
+        <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       </div>
       {isLoading ? (
         <Loader />
@@ -85,15 +63,9 @@ const SeeAllBallot: React.FC = () => {
         <div className='mx-auto max-w-4xl py-16 px-8 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8'>
           <div className='flex items-center justify-between relative'>
             <Title isThaiLanguage={isThaiLanguage} />
-            <SearchBar
-              onChangeHandler={searchHandler}
-              placeholderWord={selectedSearch.ballotId}
-            />
+            <SearchBar onChangeHandler={searchHandler} placeholderWord={selectedSearch.ballotId} />
             <div className='float-right flex justify-end'>
-              <LanguageSwitcher
-                isOpen={isThaiLanguage}
-                setIsOpen={setIsThaiLanguage}
-              />
+              <LanguageSwitcher isOpen={isThaiLanguage} setIsOpen={setIsThaiLanguage} />
             </div>
           </div>
           <div className='mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
@@ -118,17 +90,9 @@ const Title = ({ isThaiLanguage }: { isThaiLanguage: boolean }) => {
   const topic = 'Party'
 
   if (isThaiLanguage) {
-    return (
-      <span className='text-black font-semibold text-2xl w-64'>
-        บัตรเลือกตั้งสำหรับ{'พรรค'}
-      </span>
-    )
+    return <span className='text-black font-semibold text-2xl w-64'>บัตรเลือกตั้งสำหรับ{'พรรค'}</span>
   } else {
-    return (
-      <span className='text-black font-semibold text-2xl'>
-        Ballots for {topic}
-      </span>
-    )
+    return <span className='text-black font-semibold text-2xl'>Ballots for {topic}</span>
   }
 }
 

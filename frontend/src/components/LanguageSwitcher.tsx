@@ -3,10 +3,7 @@ import type { LanguageSwitcherProps } from '../interfaces/components/languageSwi
 import USFlag from './../assets/images/flag-us.png'
 import THFlag from './../assets/images/flag-th.png'
 
-const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
-  isOpen,
-  setIsOpen,
-}) => {
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isOpen, setIsOpen }) => {
   const onToggleHandler = () => setIsOpen(!isOpen)
 
   return (

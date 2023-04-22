@@ -45,9 +45,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(governmentLogo.getAttribute('href')).toBe(
-      'https://github.com/Voter-Software-Process-2022',
-    )
+    expect(governmentLogo.getAttribute('href')).toBe('https://github.com/Voter-Software-Process-2022')
   })
 
   test('click about link', () => {
@@ -70,9 +68,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(aboutLink.getAttribute('href')).toBe(
-      'https://github.com/orgs/Voter-Software-Process-2022/people',
-    )
+    expect(aboutLink.getAttribute('href')).toBe('https://github.com/orgs/Voter-Software-Process-2022/people')
   })
 
   test('click github link', () => {
@@ -95,9 +91,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(gitHubLink.getAttribute('href')).toBe(
-      'https://github.com/Voter-Software-Process-2022',
-    )
+    expect(gitHubLink.getAttribute('href')).toBe('https://github.com/Voter-Software-Process-2022')
   })
 
   test('click contract link', () => {
@@ -145,8 +139,6 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(developerLink.getAttribute('href')).toBe(
-      'https://github.com/Voter-Software-Process-2022',
-    )
+    expect(developerLink.getAttribute('href')).toBe('https://github.com/Voter-Software-Process-2022')
   })
 })

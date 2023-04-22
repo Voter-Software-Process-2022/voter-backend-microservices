@@ -21,19 +21,14 @@ describe('test English language switcher', () => {
 
     render(
       <BrowserRouter>
-        <LanguageSwitcher
-          isOpen={mockPropEnglishLanguage.isOpen}
-          setIsOpen={setStateMock}
-        />
+        <LanguageSwitcher isOpen={mockPropEnglishLanguage.isOpen} setIsOpen={setStateMock} />
       </BrowserRouter>,
     )
     const languageSwitchButton = screen.getByTestId('flag')
 
     expect(languageSwitchButton).toBeDefined()
     // expect(languageSwitchButton.className).toContain('bg-us-flag')
-    expect(languageSwitchButton.innerHTML).toContain(
-      'src="/src/assets/images/flag-us.png',
-    )
+    expect(languageSwitchButton.innerHTML).toContain('src="/src/assets/images/flag-us.png')
   })
 
   test('click switch button', () => {
@@ -43,18 +38,13 @@ describe('test English language switcher', () => {
 
     render(
       <BrowserRouter>
-        <LanguageSwitcher
-          isOpen={mockPropEnglishLanguage.isOpen}
-          setIsOpen={setStateMock}
-        />
+        <LanguageSwitcher isOpen={mockPropEnglishLanguage.isOpen} setIsOpen={setStateMock} />
       </BrowserRouter>,
     )
     const languageSwitchButton = screen.getByTestId('flag')
 
     expect(languageSwitchButton).toBeDefined()
-    expect(languageSwitchButton.innerHTML).toContain(
-      'src="/src/assets/images/flag-us.png',
-    )
+    expect(languageSwitchButton.innerHTML).toContain('src="/src/assets/images/flag-us.png')
 
     fireEvent.click(languageSwitchButton)
     // expect(screen.getByTestId('flag').className).toBe(/bg-thai-flag/i)
@@ -69,18 +59,13 @@ describe('test Thai language switcher', () => {
 
     render(
       <BrowserRouter>
-        <LanguageSwitcher
-          isOpen={mockPropThaiLanguage.isOpen}
-          setIsOpen={setStateMock}
-        />
+        <LanguageSwitcher isOpen={mockPropThaiLanguage.isOpen} setIsOpen={setStateMock} />
       </BrowserRouter>,
     )
     const languageSwitchButton = screen.getByTestId('flag')
 
     expect(languageSwitchButton).toBeDefined()
-    expect(languageSwitchButton.innerHTML).toContain(
-      'src="/src/assets/images/flag-th.png',
-    )
+    expect(languageSwitchButton.innerHTML).toContain('src="/src/assets/images/flag-th.png')
   })
 
   test('click switch button', () => {
@@ -90,18 +75,13 @@ describe('test Thai language switcher', () => {
 
     render(
       <BrowserRouter>
-        <LanguageSwitcher
-          isOpen={mockPropThaiLanguage.isOpen}
-          setIsOpen={setStateMock}
-        />
+        <LanguageSwitcher isOpen={mockPropThaiLanguage.isOpen} setIsOpen={setStateMock} />
       </BrowserRouter>,
     )
     const languageSwitchButton = screen.getByTestId('flag')
 
     expect(languageSwitchButton).toBeDefined()
-    expect(languageSwitchButton.innerHTML).toContain(
-      'src="/src/assets/images/flag-th.png',
-    )
+    expect(languageSwitchButton.innerHTML).toContain('src="/src/assets/images/flag-th.png')
 
     fireEvent.click(languageSwitchButton)
     // expect(screen.getByTestId('flag').className).toBe(/bg-thai-flag/i)

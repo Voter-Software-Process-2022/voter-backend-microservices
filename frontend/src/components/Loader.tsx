@@ -47,12 +47,7 @@ const Loader: React.FC = () => {
     <div>
       <div className='opacity-30 fixed z-50 w-full min-h-screen bg-black' />
       <div className='fixed flex items-center justify-center w-full h-screen'>
-        <motion.div
-          style={loadingContainer}
-          variants={loadingContainerVariants}
-          initial='start'
-          animate='end'
-        >
+        <motion.div style={loadingContainer} variants={loadingContainerVariants} initial='start' animate='end'>
           <motion.span
             style={loadingCircle}
             variants={loadingCircleVariants}

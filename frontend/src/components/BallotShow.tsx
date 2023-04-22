@@ -2,12 +2,7 @@ import React from 'react'
 import { thaiBallot, englishBallot } from '../config/ballotWords'
 import type { BallotShowProps } from '../interfaces/components/ballotShow'
 
-const BallotShow: React.FC<BallotShowProps> = ({
-  ballotId,
-  candidates,
-  voteForCandidateNumber,
-  isThaiLanguage,
-}) => {
+const BallotShow: React.FC<BallotShowProps> = ({ ballotId, candidates, voteForCandidateNumber, isThaiLanguage }) => {
   const selectedRule = isThaiLanguage ? thaiBallot : englishBallot
   console.log(voteForCandidateNumber)
 
@@ -35,11 +30,7 @@ const BallotShow: React.FC<BallotShowProps> = ({
                 <input
                   disabled
                   type='radio'
-                  checked={
-                    voteForCandidateNumber
-                      ? x === voteForCandidateNumber
-                      : x === 0
-                  }
+                  checked={voteForCandidateNumber ? x === voteForCandidateNumber : x === 0}
                 />
               </th>
             </tr>

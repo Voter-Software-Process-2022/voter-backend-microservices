@@ -10,10 +10,7 @@ import { isUserAuthenticated } from '../features/user/userSlice'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../app/store'
 
-const Sidebar: React.FC<SidebarProps> = ({
-  isOpenSidebar,
-  setIsOpenSidebar,
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
   const wrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef, setIsOpenSidebar)
   const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
@@ -43,9 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {authUser && (
               <Fragment>
                 <div className='w-12 h-12 rounded-full bg-[#ffaeae] flex items-center justify-center shadow-lg'>
-                  <span className='text-xl font-medium select-none'>
-                    {authUser.Name?.charAt(0)}
-                  </span>
+                  <span className='text-xl font-medium select-none'>{authUser.Name?.charAt(0)}</span>
                 </div>
                 <span className='ml-4 text-xl'>
                   {authUser.Name} {authUser.Lastname}
@@ -58,9 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
               <div className='flex items-center mx-8'>
                 <IoPersonSharp className='mr-4 text-lg' />
-                <span className='text-slate-300 text-xl font-medium'>
-                  Sign In
-                </span>
+                <span className='text-slate-300 text-xl font-medium'>Sign In</span>
               </div>
             </div>
           </Link>

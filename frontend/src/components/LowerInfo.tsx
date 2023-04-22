@@ -9,15 +9,11 @@ const LowerInfo = () => {
     >
       <div className='self-center ml-[7rem]'>
         <div className='flex flex-col '>
-          <h1 className=' text-[2rem] pt-4 md:text-[2.5rem] lg:text-[4rem] md:mt-5 font-bold'>
-            Vote Now
-          </h1>
+          <h1 className=' text-[2rem] pt-4 md:text-[2.5rem] lg:text-[4rem] md:mt-5 font-bold'>Vote Now</h1>
           <p className='w-[60%]  mt-[3rem] text-[1.5rem] lg:text-[2rem] text-[gray] leading-8 hidden md:block'>
             Click the buttons below to see the details
           </p>
-          <p className='w-[60%]  mt-[2rem]  lg:flex '>
-            The button are right below us!
-          </p>
+          <p className='w-[60%]  mt-[2rem]  lg:flex '>The button are right below us!</p>
         </div>
         <div className='flex flex-row mb-[3rem]'>
           <Link to='/topics'>

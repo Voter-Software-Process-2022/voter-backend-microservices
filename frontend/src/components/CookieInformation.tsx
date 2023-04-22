@@ -36,8 +36,7 @@ const CookieInformation = () => {
         <div className='absolute bottom-0 left-1 z-[-10] w-full h-1/2 bg-blue-200'></div>
       </div>
       <p className='mt-2 mb-4'>
-        We use <span className='font-bold'>cookies</span> to make your
-        experience on this website better
+        We use <span className='font-bold'>cookies</span> to make your experience on this website better
       </p>
       <div className='flex items-center'>
         <button

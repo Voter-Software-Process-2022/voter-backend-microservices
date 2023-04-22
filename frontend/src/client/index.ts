@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://api.yak3bd.pro',
+  baseURL: process.env.REACT_APP_API_URL,
 })

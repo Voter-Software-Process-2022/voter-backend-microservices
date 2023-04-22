@@ -4,12 +4,7 @@ import type { RootState } from '../app/store'
 import { BiLogOut } from 'react-icons/bi'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { useAppDispatch } from '../app/hooks'
-import {
-  setAllowedVoteTopics,
-  setAuthUser,
-  setIsAcceptedRules,
-  setIsAuthenticated,
-} from '../features/user/userSlice'
+import { setAllowedVoteTopics, setAuthUser, setIsAcceptedRules, setIsAuthenticated } from '../features/user/userSlice'
 import Cookies from 'js-cookie'
 
 const UserDataCard: React.FC = () => {
@@ -36,9 +31,7 @@ const UserDataCard: React.FC = () => {
             className='w-12 h-12 rounded-full bg-[#ffaeae] flex items-center justify-center shadow-lg hover:bg-[#e49898] cursor-pointer'
             onClick={() => setIsOpenData(true)}
           >
-            <span className='text-xl font-medium select-none'>
-              {authUser.Name?.charAt(0)}
-            </span>
+            <span className='text-xl font-medium select-none'>{authUser.Name?.charAt(0)}</span>
           </div>
           {isOpenData && (
             <div

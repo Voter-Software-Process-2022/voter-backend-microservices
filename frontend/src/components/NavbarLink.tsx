@@ -3,12 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import type { MenuList } from '../interfaces/menu'
 
-const NavbarLink: React.FC<MenuList> = ({
-  topic,
-  subTopic,
-  hasSubTopic,
-  path,
-}) => {
+const NavbarLink: React.FC<MenuList> = ({ topic, subTopic, hasSubTopic, path }) => {
   const [subnav, setSubnav] = useState(false)
   const navigate = useNavigate()
 
@@ -34,10 +29,7 @@ const NavbarLink: React.FC<MenuList> = ({
         <span data-testid='navbar-topic' className='select-none'>
           {topic}
         </span>
-        <div
-          className='top-12 absolute left-0 z-10 overflow-hidden rounded-sm'
-          ref={wrapperRef}
-        >
+        <div className='top-12 absolute left-0 z-10 overflow-hidden rounded-sm' ref={wrapperRef}>
           {subnav &&
             subTopic.map((subTopic, index) => (
               <div

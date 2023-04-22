@@ -31,12 +31,7 @@ const routes = (user: IUser) => [
   },
   {
     path: '/topics//vote',
-    element:
-      user.isAuthenticated && user.isAcceptedRules ? (
-        <Vote />
-      ) : (
-        <Navigate to='/forbidden' />
-      ),
+    element: user.isAuthenticated && user.isAcceptedRules ? <Vote /> : <Navigate to='/forbidden' />,
   },
   { path: '/ballots/', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },

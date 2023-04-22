@@ -19,9 +19,7 @@ describe('test topic card', () => {
 
     const topic = screen.getByTestId('topic')
     expect(topic).toBeDefined()
-    expect(topic.innerHTML).toContain(
-      `${mockProp.topicName}: ${mockProp.topicId}`,
-    )
+    expect(topic.innerHTML).toContain(`${mockProp.topicName}: ${mockProp.topicId}`)
 
     const vote = screen.getByTestId('vote')
     expect(vote).toBeDefined()
@@ -40,9 +38,7 @@ describe('test topic card', () => {
 
     const topic = screen.getByTestId('topic')
     expect(topic).toBeDefined()
-    expect(topic.innerHTML).toContain(
-      `${mockProp.topicName}: ${mockProp.topicId}`,
-    )
+    expect(topic.innerHTML).toContain(`${mockProp.topicName}: ${mockProp.topicId}`)
 
     const vote = screen.getByTestId('vote')
     expect(vote).toBeDefined()
@@ -65,9 +61,7 @@ describe('test topic card', () => {
 
     const topic = screen.getByTestId('topic')
     expect(topic).toBeDefined()
-    expect(topic.innerHTML).toContain(
-      `${mockProp.topicName}: ${mockProp.topicId}`,
-    )
+    expect(topic.innerHTML).toContain(`${mockProp.topicName}: ${mockProp.topicId}`)
 
     const vote = screen.getByTestId('vote')
     expect(vote).toBeDefined()

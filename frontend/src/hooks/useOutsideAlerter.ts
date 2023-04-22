@@ -1,9 +1,6 @@
 import { useEffect, type RefObject } from 'react'
 
-export default function useOutsideAlerter(
-  ref: RefObject<HTMLInputElement>,
-  setAction: (action: boolean) => void,
-) {
+export default function useOutsideAlerter(ref: RefObject<HTMLInputElement>, setAction: (action: boolean) => void) {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as HTMLInputElement

@@ -23,15 +23,7 @@ const SignUp: React.FC = () => {
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault()
-    if (
-      !citizen ||
-      !laser1 ||
-      !laser2 ||
-      !laser3 ||
-      !email ||
-      !password ||
-      !confirmPassword
-    ) {
+    if (!citizen || !laser1 || !laser2 || !laser3 || !email || !password || !confirmPassword) {
       alertErrorMessage('Fields must not be empty', true)
       return
     }
@@ -70,10 +62,7 @@ const SignUp: React.FC = () => {
         theme='light'
       />
       <div className='container flex flex-col items-center justify-center flex-1 max-w-lg px-2 mx-auto'>
-        <form
-          onSubmit={onSubmitHandler}
-          className='w-full px-6 py-8 text-black bg-white rounded-lg shadow-md'
-        >
+        <form onSubmit={onSubmitHandler} className='w-full px-6 py-8 text-black bg-white rounded-lg shadow-md'>
           <div className='relative flex flex-row items-center justify-center mb-8 text-3xl'>
             <Link to='/'>
               <IoChevronBackOutline className='top-1/2 absolute left-0 -translate-y-1/2 border border-gray-300 rounded-md' />
@@ -153,17 +142,11 @@ const SignUp: React.FC = () => {
             <Checkbox checked={checked} onChange={onCheckHandler} />
             <span>
               You agree to the
-              <a
-                className='border-grey-dark text-grey-dark no-underline border-b'
-                href='/'
-              >
+              <a className='border-grey-dark text-grey-dark no-underline border-b' href='/'>
                 {' Terms of Service '}
               </a>
               and
-              <a
-                className='border-grey-dark text-grey-dark no-underline border-b'
-                href='/'
-              >
+              <a className='border-grey-dark text-grey-dark no-underline border-b' href='/'>
                 {' Privacy Policy '}
               </a>
             </span>
@@ -180,10 +163,7 @@ const SignUp: React.FC = () => {
         </form>
         <div className='text-grey-dark mt-6'>
           {'Already have an account? '}
-          <a
-            className='border-blue text-blue no-underline border-b'
-            href='/login'
-          >
+          <a className='border-blue text-blue no-underline border-b' href='/login'>
             Log in
           </a>
         </div>
