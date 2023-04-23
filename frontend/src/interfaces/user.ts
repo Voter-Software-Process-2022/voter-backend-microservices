@@ -26,5 +26,5 @@ export interface LoginUserInput {
 }
 
 export interface LoginUserResponse {
-  token: string
+  Token: string
 }

@@ -20,10 +20,10 @@ export const fetchLogin = createAsyncThunk(
   'user/fetchLogin',
   async ({ citizenId, laserId }: LoginUserInput) => {
     const loginUserInput = {
-      citizenId: citizenId,
-      laserId: laserId,
+      citizenID: citizenId,
+      laserID: laserId,
     }
-    const { data } = await client.post('/auth/login', loginUserInput)
+    const { data } = await client.post('/login', loginUserInput)
     return data
   },
 )
@@ -61,11 +61,18 @@ export const userSlice = createSlice({
     builder.addCase(
       fetchLogin.fulfilled,
       (state, action: PayloadAction<LoginUserResponse>) => {
-        const { token } = action.payload
-        if (token) {
+        const { Token } = action.payload
+        if (Token) {
           state.isAuthenticated = true
-          Cookies.set('token', token)
+          Cookies.set('token', Token)
         }
+      },
+    )
+    builder.addCase(
+      fetchUserInformation.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        const { user } = action.payload
+        state.authUser = user
       },
     )
     builder.addCase(fetchUserInformation.rejected, (state) => {

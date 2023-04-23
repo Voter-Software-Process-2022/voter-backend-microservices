@@ -22,7 +22,7 @@ const UpperInfo: React.FC = () => {
               position seriously and fulfill your duties to the people. Failure
               to do so would undermine the democratic process itself.
             </p>
-            <Link to='/topics/1'>
+            <Link to='/topics'>
               <button className=' p-2.5 rounded-md mt-[70px] md:mt-[60px] md:p-2  xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
                 See Details
               </button>

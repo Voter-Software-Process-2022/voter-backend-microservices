@@ -1,10 +1,9 @@
 import React, { Fragment, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import type { RootState } from '../app/store'
 import { BiLogOut } from 'react-icons/bi'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
-import { useAppDispatch } from '../app/hooks'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
+  authenticatedUser,
   setAuthUser,
   setIsAcceptedRules,
   setIsAuthenticated,
@@ -13,7 +12,7 @@ import Cookies from 'js-cookie'
 
 const UserDataCard: React.FC = () => {
   const [isOpenData, setIsOpenData] = useState<boolean>(false)
-  const authUser = useSelector((state: RootState) => state.user.authUser)
+  const authUser = useAppSelector(authenticatedUser)
   const dispatch = useAppDispatch()
 
   const wrapperRef = useRef(null)
@@ -50,15 +49,17 @@ const UserDataCard: React.FC = () => {
                   <p>Laser ID :</p>
                   <p>Date of Birth :</p>
                   <p>Nationality :</p>
+                  <p>Religion :</p>
                 </div>
                 <div className='flex-1'>
                   <p>
                     {authUser.name} {authUser.lastname}
                   </p>
                   <p>{authUser.citizenID}</p>
-                  <p>{authUser.dateOfBirth?.split('T')[0]}</p>
+                  <p>{authUser.dateOfBirth}</p>
                   <p>{authUser.location}</p>
                   <p>{authUser.nationality}</p>
+                  <p>{authUser.religion}</p>
                 </div>
               </div>
               <div

@@ -20,7 +20,7 @@ const Info: React.FC = () => {
       setIsLoading(true)
 
       const { payload }: any = await dispatch(fetchAllCandidates())
-      setCandidates(payload)
+      setCandidates(payload.data)
       setIsLoading(false)
     }
     fetchData()

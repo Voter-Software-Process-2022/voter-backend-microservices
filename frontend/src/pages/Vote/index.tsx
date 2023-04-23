@@ -27,12 +27,8 @@ const Vote: React.FC = () => {
       setIsLoading(true)
       const { payload }: any = await dispatch(fetchAllCandidates())
       setCandidates([
-        ...payload,
-        {
-          id: 0,
-          name: 'ไม่ลงคะแนนเสียง',
-          pictureUrl: '',
-        },
+        ...payload.data,
+        { id: 0, name: 'ไม่ลงคะแนนเสียง', pictureUrl: '' },
       ])
       setIsLoading(false)
     }
