@@ -12,8 +12,8 @@ services:
     environment:
       - AWS_BUCKET_NAME=voter-attachements
       - AWS_BUCKET_REGION=ap-southeast-1
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDPLQRIMP
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   user:
@@ -27,8 +27,8 @@ services:
     environment:
       - AWS_GATEWAY=https://o19hl9r57i.execute-api.us-east-1.amazonaws.com/prod
       - AWS_API_KEY=HHKITwLzYU1lAwLNj1pO84fT3DBb4b1d4qOMPX0E
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDPLQRIMP
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   vote:
@@ -40,8 +40,8 @@ services:
     ports:
       - 6001:6001
     environment:
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQDPLQRIMP
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
+      - AWS_SECRET_ACCESS_KEY=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
       - USER_API_URL=http://voter-loadb-fcubmgajq2kr-28cf2b9e5d7ff2ce.elb.us-east-1.amazonaws.com:5001
       - CANDIDATE_API_URL=http://voter-loadb-fcubmgajq2kr-28cf2b9e5d7ff2ce.elb.us-east-1.amazonaws.com:4001
     restart: 'no'
