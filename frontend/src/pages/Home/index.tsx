@@ -13,10 +13,7 @@ import {
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
 import { useAppDispatch } from '../../app/hooks'
-import {
-  fetchUserInformation,
-  fetchUserRightToVote,
-} from '../../features/user/userSlice'
+import { fetchUserInformation } from '../../features/user/userSlice'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -25,7 +22,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       dispatch(fetchUserInformation())
-      dispatch(fetchUserRightToVote())
     }
     fetchUserData()
   }, [])

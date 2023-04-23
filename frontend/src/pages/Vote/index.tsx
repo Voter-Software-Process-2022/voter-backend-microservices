@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './vote.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ReactRouterPrompt from 'react-router-prompt'
 import { BallotSelection, Loader, PreventDialog } from '../../components'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
 import type { CandidateI } from '../../interfaces/candidate'
-import {
-  fetchMpCandidates,
-  fetchVoteNo,
-  fetchVoteSubmit,
-} from '../../features/vote/voteSlice'
+import { fetchVoteSubmit } from '../../features/vote/voteSlice'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 
 const ballotId = uuid()
@@ -29,7 +25,7 @@ const Vote: React.FC = () => {
   useEffect(() => {
     const onFetchCandidates = async () => {
       setIsLoading(true)
-      const { payload }: any = await dispatch(fetchMpCandidates())
+      const { payload }: any = await dispatch(fetchAllCandidates())
       setCandidates([
         ...payload,
         {
@@ -58,19 +54,12 @@ const Vote: React.FC = () => {
   const onSubmitHandler = async () => {
     if (!selectedCandidate) return
     setIsLoading(true)
-    selectedCandidate.id !== 0
-      ? await dispatch(
-          fetchVoteSubmit({
-            ballotId: ballotId,
-            candidateId: selectedCandidate.id,
-            areaId: selectedCandidate.areaId,
-          }),
-        )
-      : await dispatch(
-          fetchVoteNo({
-            ballotId: ballotId,
-          }),
-        )
+    await dispatch(
+      fetchVoteSubmit({
+        ballotId: ballotId,
+        voteForParty: selectedCandidate.id,
+      }),
+    )
     setIsLoading(false)
     setIsFinished(true)
   }
@@ -82,8 +71,9 @@ const Vote: React.FC = () => {
     onConfirm(isActive)
     setIsLoading(true)
     await dispatch(
-      fetchVoteNo({
+      fetchVoteSubmit({
         ballotId: ballotId,
+        voteForParty: 0,
       }),
     )
     setIsLoading(false)

@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom'
 import { Loader, Navbar, RuleModal, Sidebar } from '../../components'
 import { Fragment, useEffect, useState } from 'react'
 import InfoList from '../../components/InfoList'
@@ -6,39 +5,22 @@ import type { CandidateI } from '../../interfaces/candidate'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import { ToastContainer } from 'react-toastify'
-import { useSelector } from 'react-redux'
-import type { RootState } from '../../app/store'
-import { fetchMpCandidates } from '../../features/vote/voteSlice'
-import { isUserAuthenticated } from '../../features/user/userSlice'
+import { authenticatedUser } from '../../features/user/userSlice'
 
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [isOpenRuleModal, setIsOpenRuleModal] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
-  const [canVote, setCanVote] = useState<boolean>(false)
-  const authUser = useSelector((state: RootState) => state.user.authUser)
+  const authUser = useAppSelector(authenticatedUser)
   const dispatch = useAppDispatch()
-  const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
-
-  useEffect(() => {
-    const verifyRightToVote = () => {
-      setCanVote()
-    }
-    verifyRightToVote()
-  })
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
-      let fetchCandidate: any
 
-      const { payload }: any = verifyUserAuthenticated
-        ? await dispatch(fetchMpCandidates())
-        : await dispatch(fetchAllCandidates())
-      fetchCandidate = payload
-
-      setCandidates(fetchCandidate)
+      const { payload }: any = await dispatch(fetchAllCandidates())
+      setCandidates(payload)
       setIsLoading(false)
     }
     fetchData()
@@ -73,9 +55,7 @@ const Info: React.FC = () => {
             />
             {candidates ? (
               <Fragment>
-                <InfoList
-                  candidates={candidates}
-                />
+                <InfoList candidates={candidates} />
                 <button
                   onClick={() => setIsOpenRuleModal(true)}
                   className='hover:bg-gray-700 focus:outline-none p-3 w-16 self-center flex-center text-center text-white bg-gray-600 rounded'
@@ -86,12 +66,12 @@ const Info: React.FC = () => {
             ) : (
               <div className='my-8'>
                 <span className='text-black text-xl flex justify-center'>
-                  Not found available candidates in your area...
+                  Not found available candidates...
                 </span>
               </div>
             )}
             <RuleModal
-              canVote={canVote}
+              canVote={!authUser ? false : authUser.hasRight}
               isOpenRuleModal={isOpenRuleModal}
               setIsOpenRuleModal={setIsOpenRuleModal}
             />

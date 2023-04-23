@@ -83,12 +83,6 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
               </div>
             </Link>
           )}
-          {/* <div className='w-[0.5px] bg-white h-[70%]'></div>
-          <Link to='/register'>
-            <div className='px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-r-lg'>
-              <span>Sign </span>
-            </div>
-          </Link> */}
         </div>
       </div>
     </div>

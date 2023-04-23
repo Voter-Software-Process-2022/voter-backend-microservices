@@ -12,19 +12,5 @@ export const MENU_LIST: MenuList[] = [
     subTopic: [],
     hasSubTopic: false,
     path: '/topics',
-  },
-  {
-    topic: 'Information',
-    subTopic: [
-      {
-        topic: 'Party',
-        path: '/topics/2',
-      },
-      {
-        topic: 'MPS',
-        path: '/topics/1',
-      },
-    ],
-    hasSubTopic: true,
-  },
+  }
 ]

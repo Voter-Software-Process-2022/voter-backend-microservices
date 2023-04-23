@@ -13,10 +13,18 @@ export interface IUser {
   isAuthenticated: boolean
   authUser: UserInformation | null
   isAcceptedRules: boolean
-  allowedVoteTopics: number[]
 }
 
 export interface IUserLogin {
   citizenId: string
   laserId: string
+}
+
+export interface LoginUserInput {
+  citizenId: string
+  laserId: string
+}
+
+export interface LoginUserResponse {
+  token: string
 }

@@ -5,7 +5,6 @@ import { BiLogOut } from 'react-icons/bi'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { useAppDispatch } from '../app/hooks'
 import {
-  setAllowedVoteTopics,
   setAuthUser,
   setIsAcceptedRules,
   setIsAuthenticated,
@@ -24,7 +23,6 @@ const UserDataCard: React.FC = () => {
     dispatch(setIsAuthenticated(false))
     dispatch(setIsAcceptedRules(false))
     dispatch(setAuthUser(null))
-    dispatch(setAllowedVoteTopics([]))
     Cookies.remove('token')
   }
 
@@ -37,7 +35,7 @@ const UserDataCard: React.FC = () => {
             onClick={() => setIsOpenData(true)}
           >
             <span className='text-xl font-medium select-none'>
-              {authUser.Name?.charAt(0)}
+              {authUser.name?.charAt(0)}
             </span>
           </div>
           {isOpenData && (
@@ -55,12 +53,12 @@ const UserDataCard: React.FC = () => {
                 </div>
                 <div className='flex-1'>
                   <p>
-                    {authUser.Name} {authUser.Lastname}
+                    {authUser.name} {authUser.lastname}
                   </p>
-                  <p>{authUser.CitizenID}</p>
-                  <p>{authUser.LazerID}</p>
-                  <p>{authUser.Birthday?.split('T')[0]}</p>
-                  <p>{authUser.Nationality}</p>
+                  <p>{authUser.citizenID}</p>
+                  <p>{authUser.dateOfBirth?.split('T')[0]}</p>
+                  <p>{authUser.location}</p>
+                  <p>{authUser.nationality}</p>
                 </div>
               </div>
               <div

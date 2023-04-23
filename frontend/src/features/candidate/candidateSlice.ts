@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import client from '../../client'
 
-// TODO: replace candidateApi with the new endpoint
 export const fetchAllCandidates = createAsyncThunk(
   'user/fetchAllCandidates',
   async () => {
