@@ -8,6 +8,7 @@ const {
 	getCandidateByIdHandler,
 } = require('./handlers/candidate.handler')
 const { uploadImageFile } = require('./handlers/file.handler')
+const cors = require('cors')
 
 const storage = multer.memoryStorage()
 
@@ -27,11 +28,12 @@ const upload = multer({
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-	res.send('Hello World')
+	res.send({ Hi: 'Hello World' })
 })
 app.get('/candidates', getAllCandidatesHandler)
 app.get('/candidates/:id', getCandidateByIdHandler)
