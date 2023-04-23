@@ -6,7 +6,7 @@ const util = require('../utils/util')
 const bcrypt = require('bcryptjs')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'User2';
+const userTable = 'User';
 
 async function register(userInfo) {
     const citizenID = userInfo.citizenID;
