@@ -1,4 +1,5 @@
 const { createCandidate, findCandidateById, findAllCandidates } = require('../services/candidate.service')
+const { BUCKET_CONFIG } = require('../utils/config')
 
 exports.createCandidateHandler = async (req, res) => {
 	const requestBody = req.body
@@ -29,6 +30,8 @@ exports.getCandidateByIdHandler = async (req, res) => {
 }
 
 exports.getAllCandidatesHandler = async (_, res) => {
+	console.log(`*** AccessKey = ${BUCKET_CONFIG.AccessKeyId}`)
+	console.log(`*** SecretKey = ${BUCKET_CONFIG.SecretAccessKey}`)
 	const { data, err } = await findAllCandidates()
 	if (err) {
 		return res.status(500).json({ error: err })
