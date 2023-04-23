@@ -1,12 +1,12 @@
 const AWS = require('aws-sdk');
 AWS.config.update({
-    region: 'us-east-1'
+    region: 'ap-southeast-1'
 })
 const util = require('../utils/util')
 const bcrypt = require('bcryptjs')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'User2';
+const userTable = 'User';
 
 async function register(userInfo) {
     const citizenID = userInfo.citizenID;

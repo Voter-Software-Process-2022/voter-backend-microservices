@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'https://l3rguk1msg.execute-api.ap-southeast-1.amazonaws.com/prod',
 })

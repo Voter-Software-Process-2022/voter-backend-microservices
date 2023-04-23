@@ -12,7 +12,7 @@ export const fetchAllCandidates = createAsyncThunk(
 export const fetchCandidateDetails = createAsyncThunk(
   'user/fetchCandidateDetails',
   async ({ candidateId }: { candidateId: number }) => {
-    const { data } = await client.get(`/cadidate/${candidateId}`)
+    const { data } = await client.get(`/cadidates/${candidateId}`)
     return data
   },
 )

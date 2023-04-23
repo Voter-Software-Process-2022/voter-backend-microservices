@@ -22,6 +22,7 @@ exports.findByKey = async (key) => {
 		const url = await getSignedUrl(s3client, getCommand, { expiresIn: 900 })
 		return url.split('?')[0]
 	} catch (error) {
+		console.log(error)
 		return error
 	}
 }
@@ -37,6 +38,7 @@ exports.save = async (key, body) => {
 		await s3client.send(uploadCommand)
 		return { key: key }
 	} catch (error) {
+		console.log(error)
 		return error
 	}
 }
