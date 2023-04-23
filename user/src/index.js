@@ -2,12 +2,15 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 
+const cors = require('cors')
+
 import user from './routes/user.route.js'
 
 dotenv.config()
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
