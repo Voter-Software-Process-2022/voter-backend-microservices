@@ -1,8 +1,8 @@
 version: '3'
-x-aws-vpc: 'vpc-04126a79b32438b96'
+x-aws-vpc: 'vpc-06db8b0600a0cf70b'
 services:
   candidate:
-    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/candidate:latest
+    image: 327006186574.dkr.ecr.ap-southeast-1.amazonaws.com/candidate:latest
     build:
       context: ./candidate
       dockerfile: Dockerfile
@@ -10,14 +10,14 @@ services:
     ports:
       - 4001:4001
     environment:
-      - AWS_BUCKET_NAME=voter-attachements
+      - AWS_BUCKET_NAME=voteryak3bdpro-bucket
       - AWS_BUCKET_REGION=ap-southeast-1
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   user:
-    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/user:latest
+    image: 327006186574.dkr.ecr.ap-southeast-1.amazonaws.com/user:latest
     build:
       context: ./user
       dockerfile: Dockerfile
@@ -25,14 +25,14 @@ services:
     ports:
       - 5001:5001
     environment:
-      - AWS_GATEWAY=https://o19hl9r57i.execute-api.us-east-1.amazonaws.com/prod
+      - AWS_GATEWAY=https://l3rguk1msg.execute-api.ap-southeast-1.amazonaws.com/prod
       - AWS_API_KEY=HHKITwLzYU1lAwLNj1pO84fT3DBb4b1d4qOMPX0E
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   vote:
-    image: 434874723296.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+    image: 327006186574.dkr.ecr.ap-southeast-1.amazonaws.com/vote:latest
     build:
       context: ./vote
       dockerfile: Dockerfile
@@ -40,10 +40,10 @@ services:
     ports:
       - 6001:6001
     environment:
-      - AWS_ACCESS_KEY_ID=AKIAWKQENVPQAFT62ERE
-      - AWS_SECRET_ACCESS_KEY=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
-      - USER_API_URL=http://voter-loadb-fcubmgajq2kr-28cf2b9e5d7ff2ce.elb.us-east-1.amazonaws.com:5001
-      - CANDIDATE_API_URL=http://voter-loadb-fcubmgajq2kr-28cf2b9e5d7ff2ce.elb.us-east-1.amazonaws.com:4001
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
+      - AWS_SECRET_ACCESS_KEY=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
+      - USER_API_URL=http://http://micro-loadb-1sf89hgqxp9y1-fafd7045c7c83f11.elb.ap-southeast-1.amazonaws.com/:5001
+      - CANDIDATE_API_URL=http://http://micro-loadb-1sf89hgqxp9y1-fafd7045c7c83f11.elb.ap-southeast-1.amazonaws.com/:4001
     restart: 'no'
     depends_on:
       - candidate
