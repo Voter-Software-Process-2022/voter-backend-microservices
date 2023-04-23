@@ -20,6 +20,7 @@ exports.create = async (item) => {
 		const data = await dynamoDBClient.send(new PutItemCommand(params))
 		return { data, err: null }
 	} catch (err) {
+		console.log(err)
 		return { data: null, err }
 	}
 }
@@ -34,6 +35,7 @@ exports.count = async () => {
 		const data = await dynamoDBClient.send(new ScanCommand(params))
 		return { data: data.Count, err: null }
 	} catch (err) {
+		console.log(err)
 		return { data: null, err }
 	}
 }
@@ -45,6 +47,7 @@ exports.findAll = async () => {
 
 	try {
 		const data = await dynamoDBClient.send(new ScanCommand(params))
+		data.Items.sort((a, b) => a.id.N - b.id.N)
 		const candidateResponse = data.Items.map((item) => {
 			return {
 				id: parseInt(item.id.N),
@@ -57,6 +60,7 @@ exports.findAll = async () => {
 
 		return { data: candidateResponse, err: null }
 	} catch (err) {
+		console.log(err)
 		return { data: null, err }
 	}
 }
