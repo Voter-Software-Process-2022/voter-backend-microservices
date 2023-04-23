@@ -1,6 +1,7 @@
 import express from 'express'
 import { create, findById, findAll } from '../db/command.db.js'
 import { decodeToken } from '../../src/utils/decodeToken.js'
+import axios from 'axios'
 
 const router = express.Router()
 
@@ -30,8 +31,18 @@ router.get('/ballot/:id', async (req, res) => {
 router.post('/submit', async (req, res) => {
   const ballotID = req.body.ballotID;  // in prod, server will be generate
   const voteForParty = req.body.voteForParty;
-  const token = ''  // ??
-  const secretKey = ''  // ??
+
+  let accessToken;
+
+  if (req.headers.authorization) {
+    accessToken = req.headers.authorization
+  } else if (req.cookies?.accessToken) {
+    accessToken = req.cookies.accessToken
+  }
+
+  if (!accessToken) {
+    return res.status(401).json({ message: 'You are not logged in' })
+  }
 
   // validate fields
   if (!ballotID || !voteForParty) {
@@ -39,8 +50,33 @@ router.post('/submit', async (req, res) => {
   }
 
   // check right to vote
+  const response = await axios.get(
+    `${process.env.USER_API_URL}/pre-verify`,
+    {
+      token: accessToken,
+    },
+    {
+      headers: {
+        'x-api-key': process.env.AWS_API_KEY,
+      },
+    },
+  )
+
+  if (!response) {
+    return res.status(401).json({ message: 'Error', error: error })
+  }
+
+  if (!response.data.hasRight) {
+    return res.status(401).json({ success: false, message: 'Already vote' })
+  }
 
   // check candidateID is valid
+  const candidateResponse = await axios.get(
+    `${process.env.CANDIDATE_API_URL}/candidates/${voteForParty}`)
+
+  if (candidateResponse.status === 500 && voteForParty !== 0) {
+    return res.status(404).json({ message: 'Not found' })
+  }
 
   // ballotID's already exist 
   let { success, data } = await findById(ballotID)
@@ -52,12 +88,56 @@ router.post('/submit', async (req, res) => {
   ({ success, data } = await create({ ...req.body, timestamp: new Date() }));
 
   if (success && decodeToken(token, secretKey)) {
+  
     // vote taken
+    const votedResponse = await axios.post(
+      `${process.env.USER_API_URL}/vote-taken`,
+      {
+        token: accessToken,
+      },
+      {
+        headers: {
+          'x-api-key': process.env.AWS_API_KEY,
+        },
+      },
+    )
+
+    if (!votedResponse.success) {
+      return res.status(500).json({ success: false, message: 'Error' })
+    }
 
     return res.json({ success, data })
   }
 
   return res.status(500).json({ success: false, message: 'Error' })
+})
+
+router.get('/result', async (req, res) => {
+  const { success, data } = await findAll()
+
+  if (!success) {
+    return res.status(500).json({ success: false, message: 'Error' })
+  }
+
+  let result = {}
+
+  const candidateResponse = await axios.get(
+    `${process.env.CANDIDATE_API_URL}/candidates`
+  )
+
+  for (let i=0; i <candidateResponse.data.length; i++) {
+    let id = candidateResponse.data[i].id;
+    result[id] = 0;
+  }
+
+  console.log(result)
+
+  for (let j=0; j <candidateResponse.data.length; j++) {
+    id = candidateResponse.data[i].voteForParty;
+    result[id] += 1;
+  }
+
+  return res.json( result )
 })
 
 export default router
