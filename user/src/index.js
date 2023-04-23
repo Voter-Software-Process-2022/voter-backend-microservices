@@ -1,8 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
-
-const cors = require('cors')
+import cors from 'cors'
 
 import user from './routes/user.route.js'
 
