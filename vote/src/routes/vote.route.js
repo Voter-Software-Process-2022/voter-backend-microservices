@@ -85,9 +85,9 @@ router.post('/submit', async (req, res) => {
       return res.status(401).json({ success: false, message: 'This ballotID already exists in our database' })
   }
 
-  ({ success, data } = await create({ ...req.body, timestamp: new Date() }));
+  ({ success, data } = await create({ ...req.body }));
 
-  if (success && decodeToken(token, secretKey)) {
+  if (success) {
   
     // vote taken
     const votedResponse = await axios.post(
