@@ -4,7 +4,7 @@ const { BUCKET_CONFIG } = require('../utils/config')
 
 const s3client = new S3Client({
 	credentials: {
-		accessKeyId: BUCKET_CONFIG.AcccessKeyId,
+		accessKeyId: BUCKET_CONFIG.AccessKeyId,
 		secretAccessKey: BUCKET_CONFIG.SecretAccessKey,
 	},
 	region: BUCKET_CONFIG.Region,

@@ -12,8 +12,8 @@ services:
     environment:
       - AWS_BUCKET_NAME=voteryak3bdpro-bucket
       - AWS_BUCKET_REGION=ap-southeast-1
-      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHKBZRC4B6
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   user:
@@ -27,8 +27,8 @@ services:
     environment:
       - AWS_GATEWAY=https://l3rguk1msg.execute-api.ap-southeast-1.amazonaws.com/prod
       - AWS_API_KEY=HHKITwLzYU1lAwLNj1pO84fT3DBb4b1d4qOMPX0E
-      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
-      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHKBZRC4B6
+      - AWS_SECRET_ACCESS_KEY=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
     restart: 'no'
 
   vote:
@@ -40,10 +40,10 @@ services:
     ports:
       - 6001:6001
     environment:
-      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHGBXUBDFP
-      - AWS_SECRET_ACCESS_KEY=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
-      - USER_API_URL=http://http://micro-loadb-1sf89hgqxp9y1-fafd7045c7c83f11.elb.ap-southeast-1.amazonaws.com/:5001
-      - CANDIDATE_API_URL=http://http://micro-loadb-1sf89hgqxp9y1-fafd7045c7c83f11.elb.ap-southeast-1.amazonaws.com/:4001
+      - AWS_ACCESS_KEY_ID=AKIAUYIYWNRHKBZRC4B6
+      - AWS_SECRET_ACCESS_KEY=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
+      - USER_API_URL=https://l3rguk1msg.execute-api.ap-southeast-1.amazonaws.com/prod/users
+      - CANDIDATE_API_URL=https://l3rguk1msg.execute-api.ap-southeast-1.amazonaws.com/prod/candidates
     restart: 'no'
     depends_on:
       - candidate
