@@ -112,7 +112,7 @@ router.post('/submit', async (req, res) => {
   return res.status(500).json({ success: false, message: 'Error' })
 })
 
-router.get('/result', async (req, res) => {
+router.get('/results', async (req, res) => {
   const { success, data } = await findAll()
 
   if (!success) {
@@ -121,20 +121,14 @@ router.get('/result', async (req, res) => {
 
   let result = {}
 
-  const candidateResponse = await axios.get(
-    `${process.env.CANDIDATE_API_URL}/candidates`
-  )
+  for (let j=0; j <data.length; j++) {
+    let id = data[j].voteForParty;
 
-  for (let i=0; i <candidateResponse.data.length; i++) {
-    let id = candidateResponse.data[i].id;
-    result[id] = 0;
-  }
-
-  console.log(result)
-
-  for (let j=0; j <candidateResponse.data.length; j++) {
-    id = candidateResponse.data[i].voteForParty;
-    result[id] += 1;
+    if (id in result) {
+      result[id] += 1;
+    } else {
+      result[id] = 0;
+    }
   }
 
   return res.json( result )
