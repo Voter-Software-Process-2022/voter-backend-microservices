@@ -30,7 +30,7 @@ const UserDataCard: React.FC = () => {
       {authUser && (
         <Fragment>
           <div
-            className='w-12 h-12 rounded-full bg-[#ffaeae] flex items-center justify-center shadow-lg hover:bg-[#e49898] cursor-pointer'
+            className='w-12 h-12 rounded-full bg-slate-400 flex items-center justify-center shadow-lg hover:bg-slate-500 cursor-pointer'
             onClick={() => setIsOpenData(true)}
           >
             <span className='text-xl font-medium select-none'>
@@ -46,7 +46,7 @@ const UserDataCard: React.FC = () => {
                 <div className='mr-2 font-medium'>
                   <p>Name :</p>
                   <p>Citizen ID :</p>
-                  <p>Laser ID :</p>
+                  <p>Location :</p>
                   <p>Date of Birth :</p>
                   <p>Nationality :</p>
                   <p>Religion :</p>
@@ -56,8 +56,8 @@ const UserDataCard: React.FC = () => {
                     {authUser.name} {authUser.lastname}
                   </p>
                   <p>{authUser.citizenID}</p>
-                  <p>{authUser.dateOfBirth}</p>
                   <p>{authUser.location}</p>
+                  <p>{authUser.dateOfBirth}</p>
                   <p>{authUser.nationality}</p>
                   <p>{authUser.religion}</p>
                 </div>

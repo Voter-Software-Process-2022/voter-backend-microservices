@@ -30,3 +30,11 @@ export const fetchVoteAllBallot = createAsyncThunk(
     return data
   },
 )
+
+export const fetchVoteResults = createAsyncThunk(
+  'vote/fetchVoteResults',
+  async () => {
+    const { data } = await client.get('/vote/results')
+    return data
+  },
+)

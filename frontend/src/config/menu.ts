@@ -12,5 +12,11 @@ export const MENU_LIST: MenuList[] = [
     subTopic: [],
     hasSubTopic: false,
     path: '/topics',
+  },
+  {
+    topic: 'Results',
+    subTopic: [],
+    hasSubTopic: false,
+    path: '/results',
   }
 ]

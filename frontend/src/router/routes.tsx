@@ -6,7 +6,7 @@ const Home = lazy(() => import('../pages/Home'))
 const SignUp = lazy(() => import('../pages/SignUp'))
 const SignIn = lazy(() => import('../pages/SignIn'))
 const Info = lazy(() => import('../pages/Info'))
-const SeeAllBallot = lazy(() => import('../pages/SeeAllBallot'))
+const Results = lazy(() => import('../pages/Results'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const NotFound = lazy(() => import('../pages/NotFound'))
 const Vote = lazy(() => import('../pages/Vote'))
@@ -32,7 +32,7 @@ const routes = (user: IUser) => [
         <Navigate to='/forbidden' />
       ),
   },
-  { path: '/ballots/', element: <SeeAllBallot /> },
+  { path: '/results', element: <Results /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/forbidden', element: <Forbidden /> },
   { path: '*', element: <NotFound /> },

@@ -33,9 +33,10 @@ export const fetchUserInformation = createAsyncThunk(
   async () => {
     const token = Cookies.get('token')
     const options = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { 'x-api-key': 'HHKITwLzYU1lAwLNj1pO84fT3DBb4b1d4qOMPX0E' },
     }
-    const { data } = await client.get('/users/me', options)
+    const requestBody = { token: token }
+    const { data } = await client.post('/verify-token', requestBody, options)
     return data
   },
 )
@@ -71,8 +72,8 @@ export const userSlice = createSlice({
     builder.addCase(
       fetchUserInformation.fulfilled,
       (state, action: PayloadAction<any>) => {
-        const { user } = action.payload
-        state.authUser = user
+        const { payload } = action
+        state.authUser = payload
       },
     )
     builder.addCase(fetchUserInformation.rejected, (state) => {
