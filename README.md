@@ -18,4 +18,7 @@ AWS services:
 Group member:
 1. Bhokin Watanapitak 6310546392 
 2. Thanatibordee Silhaboonthong 6310545299 
-3. Thanathip Suwannakhot 6310545981 
+3. Thanathip Suwannakhot 6310545981     
+
+Google Slide:
+[Link](https://docs.google.com/presentation/d/1O5DOC5xYWyN711w70OFqV46dx1Lq8hWGYLFWP0JVN0c/edit?usp=sharing)
